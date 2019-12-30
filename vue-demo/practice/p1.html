@@ -19,8 +19,9 @@
 					<hr >
 					{{text}}
 					<hr >
+					<button @click="btn(0)">点击减少1</button>
 					{{num}}
-					<button @click="btn">点击增加</button>
+					<button @click="btn(1)">点击增加1</button>
 					<hr >
 					单向输入框：<input type="" name="" id="" :value="each_bind" />
 					<br>
@@ -54,7 +55,11 @@
 		},
 		methods: {
 			btn: function (e) {
-				return this.num++;
+				if (e==0) {
+					return this.num--;
+				} else {
+					return this.num++;
+				}
 			}
 		}
 	})
