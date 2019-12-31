@@ -1,25 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <div id="app"></div>
 </body>
 <script src="../js/vue.js"></script>
 <script>
-    var App={
-        template:'<h1>子组件<h1>'
+    var MyHeader = {
+        template: '<div>头部组件</div>'
     };
-    new new Vue({
-        el:'#app',
-        components:{
-            app:App
+    var MyBody = {
+        template: '<div>身体组件</div>'
+    };
+    var Myfooter = {
+        data: function () {
+            return {
+                textXXX: ''
+            }
         },
-        template:'<app/>'
+        template: `
+            <div>
+                <div>底部组件</div>
+                <input type='text' v-model='textXXX'></input>
+                <div>{{textXXX}}</div>    
+            </div>
+            `,
+        meta: {
+            typeXXX: function (e) {
+                return e;
+            }
+        }
+    };
+    var App = {
+        template: `<div>
+                    <my-header/>
+                    <my-body/>
+                    <my-footer/>
+                </div>`,
+        components: {
+            'my-header': MyHeader,
+            'my-body': MyBody,
+            'my-footer': Myfooter
+        }
+
+    };
+    new Vue({
+        el: '#app',
+        components: {
+            'app': App
+        },
+        template: '<app/>'
     })
 </script>
+
 </html>
