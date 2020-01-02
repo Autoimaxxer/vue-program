@@ -13,22 +13,28 @@
 
     <script src="../js/vue.js"></script>
     <script>
+        //全局过滤器
+        Vue.filter('x_filter', function () {
+            return '123'
+        })
+
+
         //通过过滤器使输入的字符反转（使用到v-model）
         var App = {
-            data:function(){
+            data: function () {
                 return {
-                    myText:''
+                    myText: ''
                 }
             },
             template: `
                     <div>
                         <input type="text" v-model="myText">
-                        {{myText | reverse}}
+                        {{myText | reverse('data2')}}
                     </div>
                     `,
             filters: {
-                reverse:function(oData,nData){//第一个参数为原始数据
-                    return oData.split('').reverse().join('');
+                reverse: function (data1, data2) {//第一个参数为原始数据（即myText），后续为传参
+                    return data2 + '：' + data1.split('').reverse().join('');
                 }
             }
         };
