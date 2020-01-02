@@ -10,54 +10,69 @@
 
 <body>
     <div id="app"></div>
-</body>
-<script src="../js/vue.js"></script>
-<script>
-    var MyHeader = {
-        template: '<div>头部组件</div>'
-    };
-    var MyBody = {
-        template: '<div>身体组件</div>'
-    };
-    var Myfooter = {
-        data: function () {
-            return {
-                textXXX: '123'
-            }
-        },
-        template: `
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var MyHeader = {
+            template: '<div>头部组件</div>'
+        };
+        var MyBody = {
+            template: '<div>身体组件</div>'
+        };
+        var Myfooter = {
+            data: function () {
+                return {
+                    textXXX: '123'
+                }
+            },
+            template: `
             <div>
                 <div>底部组件</div>
                 <input type='text' v-model='textXXX'></input>
-                <div>{{textXXX}}</div>    
+                <div>{{textXXX}}</div>
+                <hr/>
+                底部使用公共组件
+                <my-btn/>
             </div>
             `,
-        methods: {
-            typeXXX: function (e) {
-                return e;
+            methods: {
+                typeXXX: function (e) {
+                    return e;
+                }
             }
-        }
-    };
-    var App = {
-        template: `<div>
+        };
+        Vue.component('my-btn', {
+            template: `<button @click=btn>公共按钮</button>`,
+            methods: {
+                btn: function () {
+                    alert('点击公共按钮')
+                }
+            }
+        })
+        var App = {
+            template: `<div>
+                    全局使用公共组件
+                    <my-btn/>
+                    <hr/>
                     <my-header/>
                     <my-body/>
                     <my-footer/>
                 </div>`,
-        components: {
-            'my-header': MyHeader,
-            'my-body': MyBody,
-            'my-footer': Myfooter
-        }
+            components: {
+                'my-header': MyHeader,
+                'my-body': MyBody,
+                'my-footer': Myfooter
+            }
 
-    };
-    new Vue({
-        el: '#app',
-        components: {
-            'app': App
-        },
-        template: '<app/>'
-    })
-</script>
+        };
+        new Vue({
+            el: '#app',
+            components: {
+                'app': App
+            },
+            template: '<app/>'
+        })
+    </script>
+</body>
 
 </html>
