@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>11</title>
+	<title>Document</title>
 </head>
 
 <body>
@@ -16,13 +16,13 @@
 			template: `
 				<div :text='text'>
 					<div v-html=m_html></div>
-					<hr >
+					<hr>
 					{{text}}
-					<hr >
+					<hr>
 					<button @click="btn(0)">点击减少1</button>
 					{{num}}
 					<button @click="btn(1)">点击增加1</button>
-					<hr >
+					<hr>
 					单向输入框：<input type="" name="" id="" :value="each_bind" />
 					<br>
 					双向输入框：<input type="text" name="" id="" v-model="each_bind" />
@@ -43,27 +43,30 @@
 					</ul>
 				</div>
 			`,
-			data: function () {
-				return {
-					m_html: '<span>html标签</span>',
-					text: '文本',
-					num: 0,
-					each_bind: '1112221',
-					stus1: ['A', 'B', 'C'],
-					stus2: { 'A': '张三', 'B': '李四', 'C': '王五' }
-				}
-			},
-			methods: {
-				btn: function (e) {
-					if (e == 0) {
-						return this.num--;
-					} else {
-						return this.num++;
-					}
+		data: function () {
+			return {
+				m_html: '<span>html标签</span>',
+				text: '文本',
+				num: 0,
+				each_bind: '1112221',
+				stus1: ['A', 'B', 'C'],
+				stus2: {
+					'A': '张三',
+					'B': '李四',
+					'C': '王五'
 				}
 			}
-		})
-	</script>
-</body>
+		},
+		methods: {
+			btn: function (e) {
+				if (e == 0) {
+					return this.num--;
+				} else {
+					return this.num++;
+				}
+			}
+		}
+	})
+</script>
 
 </html>
