@@ -26,7 +26,8 @@
                 `
         };
         // 2：安装插件 => ?
-        Vue.use(VueRouter);
+        Vue.use(VueRouter); // VueROuter,install = fn(Vue);
+        //use：function (plugin) { plugin.install(Vue); }
         // 3：创建一个路由对象
         var router = new VueRouter({
             // 4：配置路由对象
