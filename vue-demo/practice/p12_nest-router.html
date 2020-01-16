@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="../js/vue.js"></script>
+    <!--1：引入vue-router（核心插件） -->
+    <script src="../js/vue-router.js"></script>
+    <script>
+
+        //1：router-view中包含router-view
+        //2：路由规则中存在子路由
+        var Login = {
+            template: `
+                    <div>
+                        我是login显示的内容，下面是子路由(Wa)显示的内容
+                        <router-view></router-view>
+                    </div>
+                `
+        };
+        var Register = {
+            template: `
+                    <div>
+                        我是register显示的内容，下面是子路由(Ya)显示的内容
+                       <router-view></router-view> 
+                    </div>
+                `,
+        };
+        var Wa = {
+            template: `
+                    <div>
+                        我是Wa
+                    </div>
+                `
+        };
+        var Aaa = {
+            template: `
+                    <div>
+                        我是Aaa
+                    </div>
+                `
+        };
+        var Ya = {
+            template: `
+                    <div>
+                        我是Ya
+                    </div>
+                `
+        };
+        var router = new VueRouter({
+            routes: [
+                {//保证 /login 显示 login组件
+                    name: 'login',
+                    path: '/login',
+                    component: Login,
+                    //保证 /login/abc 显示abc   
+                    children: [
+                        {
+                            name: 'login.wa',
+                            path: 'wa',
+                            component: Wa
+                        },
+                        {
+                            name: 'login.aaa',
+                            path: 'aaa',
+                            component: Aaa
+                        },
+                    ]
+                },
+                {
+                    name: 'register',
+                    path: '/register',
+                    component: Register,
+                    children: [
+                        {
+                            name: 'register.ya',
+                            path: 'ya',
+                            component: Ya
+                        },
+                    ]
+                }
+            ]
+        });
+
+        var App = {
+            template: `
+                    <div>
+                        <router-link :to="{name:'login.wa'}">Wa</router-link>
+                        <router-link :to="{name:'login.aaa'}">Aaa</router-link>
+                        <router-link :to="{name:'register.ya'}">Ya</router-link>
+                        <router-view></router-view>
+                    </div>
+                    `,
+        };
+        new Vue({
+            el: '#app',
+            router: router,//需要配置到vue实例中，不加会报错：undefined对象中取不到matched
+            components: {
+                'app': App
+            },
+            template: '<app/>'
+        });
+
+
+
+
+    </script>
+</body>
+
+</html>
