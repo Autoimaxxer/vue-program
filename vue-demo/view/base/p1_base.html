@@ -34,6 +34,7 @@
 							index：{{index}}
 						</li>
 					</ul>
+					<hr>
 					<ul>
 						<li v-for="(value,key,i) in stus2">
 							value：{{value}}
@@ -43,30 +44,30 @@
 					</ul>
 				</div>
 			`,
-		data: function () {
-			return {
-				m_html: '<span>html标签</span>',
-				text: '文本',
-				num: 0,
-				each_bind: '1112221',
-				stus1: ['A', 'B', 'C'],
-				stus2: {
-					'A': '张三',
-					'B': '李四',
-					'C': '王五'
+			data: function () {
+				return {
+					m_html: '<span>html标签</span>',
+					text: '文本',
+					num: 0,
+					each_bind: '1112221',
+					stus1: ['A', 'B', 'C'],
+					stus2: {
+						'A': '张三',
+						'B': '李四',
+						'C': '王五'
+					}
+				}
+			},
+			methods: {
+				btn: function (e) {
+					if (e == 0) {
+						return this.num--;
+					} else {
+						return this.num++;
+					}
 				}
 			}
-		},
-		methods: {
-			btn: function (e) {
-				if (e == 0) {
-					return this.num--;
-				} else {
-					return this.num++;
-				}
-			}
-		}
-	})
-</script>
+		})
+	</script>
 
 </html>
