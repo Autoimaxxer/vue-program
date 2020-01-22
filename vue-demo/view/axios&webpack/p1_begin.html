@@ -6,18 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        .box {
-            height: 50px;
-            overflow: hidden;
-        }
-
-        li {
-            list-style: none;
-            height: 50px;
-            line-height: 50px;
-        }
-    </style>
 </head>
 
 <body>
@@ -30,47 +18,56 @@
         var App = {
             data() {
                 return {
-                    list: []
+                    res1: '',
+                    res2: ''
                 }
             },
             template: `
                         <div>
                             <button @click='sendAxios'>点击发送请求</button>
-                            <div class='box'>
-                                <ul ref='list'>
-                                    <li v-for="x in list">{{x.str}}</li>
-                                </ul>    
-                            </div>
+                            <hr>
+                            <button @click='mergeSend'>合并请求</button>
+                            相应1：{{res1}}
+                            相应2：{{res2}}
                         </div>
                     `,
             methods: {
                 sendAxios: function () {
                     var _self = this;
                     //让组件具备axios对象的引用
-                    //axios.get(url.options)
+                    //axios.get||post||put||delete(url.options)
                     axios.get('https://weixin.ytzq.com/servlet/json', {
                         params: { weixinpk: 'gh_81586d5e2ea4', openid: 'oryDLji2gcZpuHiwUmCySBh3VLII', funcNo: '5001009' }
                     }).then(function (res) {
-                        console.log(res.data);
-                        for (let i = 0; i < res.data.results.length; i++) {
-                            _self.list.push(res.data.results[i]);
-                        };
-                        _self.list.push(res.data.results[0]);
-                        console.log(_self.$refs.list.style.height);
-                        // var num = 0;
-                        // var run=setTimeout(() => {
-                        //     num++;
-                        //     if (num % 50 == 0) {
-                        //         run()
-                        //     } else {
-                        //         _self.$refs.list.style.marginTop = -num + 'px';
-                        //     }
-                        //     // console.log(_self.$refs.list.style )
-                        // }, 10);
-                        // run();
+                        console.log(res);
                     }).catch(function (res) {
                         console.log(res);
                     })
+                },
+                mergeSend: function () {
+                    //请求1 get  //请求2  post
+                    //this.$axios.get||post(url,[post的时候有data],options)
+
+                    //配置公共数据
+                    this.$axios.defaults.baseURL = 'https://weixin.ytzq.com/servlet/json?weixinpk=gh_81586d5e2ea4&openid=oryDLji2gcZpuHiwUmCySBh3VLII';
+
+                    var q1 = this.$axios.get('', {
+                        params: { funcNo: '5001009' }
+                    });
+                    var q2 = this.$axios.get('', {
+                        params: { funcNo: '5005001' }
+                    });
+
+                    //合并这两个请求，并处理其成功和失败
+                    this.$axios.all([q1, q2])
+                        .then(//全成功
+                            this.$axios.spread((res1, res2) => {
+                                this.res1 = res1.data.results;
+                                this.res2 = res2.data.results
+                            })
+                        ).catch( //只要有一个失败就进入
+                            err => console.log(err)
+                        );
                 }
             }
         };
