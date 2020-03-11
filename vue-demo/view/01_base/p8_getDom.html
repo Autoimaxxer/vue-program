@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="../../js/vue.js" type="text/javascript"></script>
+    <script>
+        //在组件的DOM部分，任意的标签中写上 ref=“xxx”
+        //可以通过组件对象 this.$refs.xxx获取元素
+
+        //子组件，供$refs获取
+        var SonTem = {
+            template: `
+                <div>
+                    我是子组件
+                </div>
+            `
+        };
+
+        //声明全局组件
+        Vue.component('temp', SonTem);
+
+        var App = {
+            data() {
+                return {
+                    isShow: false
+                }
+            },
+            template: `
+                    <div>
+                       <button ref='btn'>点击</button>
+                       <hr/>
+                       <temp ref='temp'></temp>
+                       <hr/>
+                       <input type='text' v-if='isShow' ref='inp'>
+                    </div>
+                    `,
+            beforeCreate: function () {
+                //不能操作数据，只是初始化
+                // console.log(this.$refs.btn);//undefined
+            },
+            created: function () {
+                //可以操作数据了
+                // console.log(this.$refs.btn);//undefined
+            },
+            beforeMount: function () {
+                //vue起作用了，发生装载，在替换 <div id='app'>之前
+                // console.log(this.$refs.btn);//undefined
+            },
+            mounted: function () {
+                //装载数据之后
+                // console.log(this.$refs.btn);//显示button
+                // console.log(this.$refs.temp.$el);//div
+
+                //显示元素
+                this.isShow = true;//会触发input元素的插入
+
+
+                this.isShow=false;
+                this.isShow=true;
+                //最终代码执行完毕后，vue才会根据实际值，进行DOM的操作
+
+                //给input元素获取焦点
+                // this.this.$refs.inp.focus();//会报错
+
+                //必须在vue真正渲染DOM到页面以后，才执行事件
+                this.$nextTick(function(){
+                    this.$refs.inp.focus();
+                })
+            }
+        };
+
+        //$属性：$refs 获取组件内的元素
+        //$parent：获取当前组件对象的父组件
+        //$children：获取子组件
+        //$root：获取new Vue的实例
+        //$el：获取组件对象的dom元素
+
+        new Vue({
+            el: '#app',
+            components: {
+                'app': App
+            },
+            template: '<app/>'
+        })
+    </script>
+</body>
+
+</html>

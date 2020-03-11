@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="../../js/vue.js"></script>
+    <!--1：引入vue-router（核心插件） -->
+    <script src="../../js/vue-router.js"></script>
+    <script>
+        var isLogin = false;
+        //1：router-view中包含router-view
+        //2：路由规则中存在子路由
+        var Login = {
+            template: `
+                    <div>
+                        登录页面
+                    </div>
+                `,
+            created: function () {
+                isLogin = true;
+            }
+        };
+        var Con = {
+            template: `
+                    <div>
+                       登录后才能看到的页面
+                    </div>
+                `,
+        };
+        var router = new VueRouter();
+
+        //可以多次追加路由规则，动态的获取路由规则
+        //更为灵活，可以方便调用追加路由规则
+        router.addRoutes([
+
+            //默认首页路由
+
+            { path: '/', redirect: { name: 'login' } },
+            {
+                name: 'login',
+                path: '/login',
+                component: Login
+            },
+            {
+                name: 'con',
+                path: '/con',
+                component: Con,
+                meta: { isChecked: true }//给未来路由的权限控制（路由守卫），来做参照条件
+            }
+        ]);
+        router.beforeEach(function (to, from, next) {
+            if (!to.meta.isChecked) {
+                next();//不调用next，会卡住
+            } else {
+                //需要判断是否登录
+                if (isLogin) {
+                    next();//放行
+                    //next(false)  取消用户导航行为
+                } else {
+                    alert('请先登录');
+
+                    //重定向到 login
+                    next({ name: 'login' })
+                }
+            }
+        })
+        var App = {
+            template: `
+                    <div>
+                        <router-link :to="{name:'login'}">登录</router-link>
+                        <router-link :to="{name:'con'}">内页</router-link>
+                        <router-view></router-view>
+                    </div>
+                    `,
+        };
+        new Vue({
+            el: '#app',
+            router: router,
+            components: {
+                'app': App
+            },
+            template: '<app/>'
+        });
+
+
+
+
+    </script>
+</body>
+
+</html>

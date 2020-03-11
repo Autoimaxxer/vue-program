@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="../../js/vue.js" type="text/javascript"></script>
+    <script>
+        //watch监视属性变化
+        var App = {
+            data: function () {
+                return {
+                    myText: '',
+                    stus: [
+                        { name: '张三' }
+                    ]
+                }
+            },
+            template: `
+                    <div>
+                        <input type="text" v-model="myText"></input>
+                        {{myText}}
+                        <hr/>
+                        {{stus[0].name}}
+                        <button @click='stus[0].name="李四"'>点击改变属性</button>
+                    </div>
+                    `,
+            watch: {
+                //key是属于data属性的属性名，value是监视后的行为
+                myText: function (newV, oldV) {
+                    if (this.myText == '123') {//使用this值
+                        alert('watch is work(this)')
+                    };
+                    if (newV == '321') {//使用传参
+                        alert('watch is work(send data)')
+                    };
+                },
+                //监视复杂类型
+                // stus: function () {
+                //     console.log('深度监视无法成功');//无法监视的原因是监视的是对象的地址，地址无更改
+                // },
+                stus: {
+                    deep: 'ture',
+                    handler: function () {
+                        console.log('监视成功')
+                    }
+                }
+            }
+        };
+        new Vue({
+            el: '#app',
+            components: {
+                'app': App
+            },
+            template: '<app/>'
+        })
+    </script>
+</body>
+
+</html>
