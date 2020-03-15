@@ -1,5 +1,5 @@
-var app={
-    template:`
+var app = {
+    template: `
         <div>我是app组件</div>
     `
 }
