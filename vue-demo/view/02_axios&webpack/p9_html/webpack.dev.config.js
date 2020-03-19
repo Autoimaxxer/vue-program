@@ -30,7 +30,7 @@ module.exports = {
             //处理ES6,7,8
             {
                 test: /\.js$/, loader: 'babel-loader', 
-                exclude:/node_nodules/,//排除包含node_modules目录
+                exclude:/node_modules/,//排除包含node_modules目录
                 options: {
                     presets: ['env'],//处理关键字
                     plugins: ['transform-runtime'],//处理函数
