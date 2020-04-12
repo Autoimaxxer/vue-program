@@ -3,16 +3,16 @@
     <!-- 上有轮播图，下有九宫格 -->
     <mt-swipe :auto="2000">
       <mt-swipe-item v-for="(img,index) in imgs" :key="index">
-        <img :src="img.images.medium" />
+        <img :src="img.img" />
       </mt-swipe-item>
     </mt-swipe>
     <div class="grid">
       <my-ul>
         <my-li v-for="(grid,index) in grids" :key="index">
-          <a href>
+          <router-link :to="grid.router">
             <span :class="grid.className"></span>
             <div>{{grid.title}}</div>
-          </a>
+          </router-link>
         </my-li>
       </my-ul>
     </div>
@@ -25,27 +25,73 @@ export default {
       msg: 'Home',
       imgs: [], // 轮播图数据
       grids: [
-        { className: 'g_icon1', title: '新闻资讯' },
-        { className: 'g_icon2', title: '图文分享' },
-        { className: 'g_icon3', title: '商品展示' },
-        { className: 'g_icon4', title: '留言反馈' },
-        { className: 'g_icon5', title: '搜索资讯' },
-        { className: 'g_icon6', title: '联系我们' }
+        {
+          className: 'g_icon1',
+          title: '新闻资讯',
+          router: {
+            name: 'news.list'
+          }
+        },
+        {
+          className: 'g_icon2',
+          title: '图文分享',
+          router: {
+            name: 'news.list'
+          }
+        },
+        {
+          className: 'g_icon3',
+          title: '商品展示',
+          router: {
+            name: 'news.list'
+          }
+        },
+        {
+          className: 'g_icon4',
+          title: '留言反馈',
+          router: {
+            name: 'news.list'
+          }
+        },
+        {
+          className: 'g_icon5',
+          title: '搜索资讯',
+          router: {
+            name: 'news.list'
+          }
+        },
+        {
+          className: 'g_icon6',
+          title: '联系我们',
+          router: {
+            name: 'news.list'
+          }
+        }
       ]
     }
   },
   // created创建组件的生命周期函数中，可以操作数据
   created () {
-    this.$axios.get('/api/v2/movie/top250?start=0&count=5&apikey=0df993c66c0c636e29ecbb5344252a4a')
+    //   this.$axios.get('/doubanjk/v2/movie/top250?start=0&count=5&apikey=0df993c66c0c636e29ecbb5344252a4a')
+    //     .then(res => {
+    //       // res.data.message=[{img:'图片地址'}]
+    //       this.imgs = res.data.subjects
+    //       console.log(res.data.subjects)
+    //     })
+    //     .catch(err => {
+    //       console.log('轮播图获取异常', err)
+    //     })
+    // }
+    this.$axios.post('/apiopenjk/getImages?page=0&count=5')
       .then(res => {
-        // res.data.message=[{img:'图片地址'}]
-        this.imgs = res.data.subjects
-        console.log(res.data.subjects)
+        console.log(res.data.result)
+        this.imgs = res.data.result
       })
       .catch(err => {
         console.log('轮播图获取异常', err)
       })
   }
+
 }
 </script>
 <style scoped>
@@ -92,5 +138,9 @@ div {
 }
 .grid li span.g_icon6 {
   background-image: url(../../assets/img/g_icon6.png);
+}
+a {
+  text-decoration: none;
+  color: #222;
 }
 </style>

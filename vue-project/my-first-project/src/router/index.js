@@ -4,6 +4,7 @@ import Home from '@/components/Home/Home'
 import Member from '@/components/Member/Member'
 import Search from '@/components/Search/Search'
 import Shopcart from '@/components/Shopcart/Shopcart'
+import NewsList from '@/components/News/NewsList'
 
 Vue.use(Router)
 // 注册全局组件router-view和router-link
@@ -17,6 +18,11 @@ Router.prototype.push = function push (to) {
 
 export default new Router({
   routes: [
+    {
+      // 首先进行重定向的操作
+      path: '/',
+      redirect: { name: 'home' }
+    },
     {
       path: '/home',
       name: 'home',
@@ -36,6 +42,12 @@ export default new Router({
       path: '/shopcart',
       name: 'shopcart',
       component: Shopcart
+    },
+    // 次级路由，新闻列表
+    {
+      path: 'News/list',
+      name: 'news.list',
+      component: NewsList
     }
   ]
 })
