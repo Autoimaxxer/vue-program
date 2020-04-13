@@ -16,12 +16,16 @@ import './assets/css/global.css'
 // 引入自己的ul和li组件
 import MyUl from '@/components/Common/MyUl'
 import MyLi from '@/components/Common/MyLi'
-Vue.use(MintUI)
 
+// 定义moment全局日期过滤器
+import Moment from 'moment'
+Vue.use(MintUI)
 // 注册全局组件
 Vue.component(MyUl.name, MyUl)
 Vue.component(MyLi.name, MyLi)
-
+Vue.filter('covertTime', function (data, formatStr) {
+  return Moment(data).format(formatStr)
+})
 // 配置公共URL
 // Axios.defaults.baseURL = 'https://douban.uieee.com'
 Vue.prototype.$axios = Axios

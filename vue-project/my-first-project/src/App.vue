@@ -1,8 +1,8 @@
 <template>
   <div>
-    <mt-header title="我们的项目管理信息"></mt-header>
+    <mt-header title="我们的项目管理信息" fixed></mt-header>
     <router-view></router-view>
-    <mt-tabbar v-model="selected">
+    <mt-tabbar v-model="selected" fixed>
       <mt-tab-item id="home">
         <img slot="icon" src="./assets/img/tab_i_on.png" />
         首页
