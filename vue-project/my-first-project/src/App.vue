@@ -4,19 +4,19 @@
     <router-view></router-view>
     <mt-tabbar v-model="selected" fixed>
       <mt-tab-item id="home">
-        <img slot="icon" src="./assets/img/tab_i_on.png" />
+        <img @click="changeHash" slot="icon" src="./assets/img/tab_i_on.png" />
         首页
       </mt-tab-item>
       <mt-tab-item id="member">
-        <img slot="icon" src="./assets/img/tab_i_vip.png" />
+        <img @click="changeHash" slot="icon" src="./assets/img/tab_i_vip.png" />
         会员
       </mt-tab-item>
       <mt-tab-item id="shopcart">
-        <img slot="icon" src="./assets/img/tab_gwc.png" />
+        <img @click="changeHash" slot="icon" src="./assets/img/tab_gwc.png" />
         购物车
       </mt-tab-item>
       <mt-tab-item id="search">
-        <img slot="icon" src="./assets/img/tab_search.png" />
+        <img @click="changeHash" slot="icon" src="./assets/img/tab_search.png" />
         查找
       </mt-tab-item>
     </mt-tabbar>
@@ -29,13 +29,29 @@ export default {
       selected: ''
     }
   },
-  watch: {
-    selected (newV, oldV) {
-      console.log(newV)
-      this.$router.push({
-        name: newV
+  methods: {
+    changeHash () {
+      // 如果直接调用，那么该调用早于子组件赋值给父组件的selected
+    //   console.log(this.selected)
+      this.$nextTick(function () {
+        // 在vue完成渲染之后才执行
+        console.log(this.selected)
+        // this.$router.push({
+        //   name: this.selected
+        // })
       })
     }
+  },
+  updated () {
+    console.log(this.selected)
+  },
+  watch: {
+    // selected (newV, oldV) {
+    //   console.log(newV)
+    //   this.$router.push({
+    //     name: newV
+    //   })
+    // }
   }
 }
 </script>
