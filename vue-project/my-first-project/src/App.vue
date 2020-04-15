@@ -31,20 +31,22 @@ export default {
   },
   methods: {
     changeHash () {
+      var _that = this
       // 如果直接调用，那么该调用早于子组件赋值给父组件的selected
-    //   console.log(this.selected)
+      //  console.log(this.selected)
       this.$nextTick(function () {
-        // 在vue完成渲染之后才执行
-        console.log(this.selected)
-        // this.$router.push({
-        //   name: this.selected
-        // })
+        // 在vue完成渲染之后才执行(一般是不需要加定时器也可以执行，但在调试时有时候不起效果，故加上定时器)
+        setTimeout(function () {
+          _that.$router.push({
+            name: _that.selected
+          })
+        }, 0)
       })
     }
   },
-  updated () {
-    console.log(this.selected)
-  },
+  //   updated () {
+  //     console.log(this.selected)
+  //   },
   watch: {
     // selected (newV, oldV) {
     //   console.log(newV)

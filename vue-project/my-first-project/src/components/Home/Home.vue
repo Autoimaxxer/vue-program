@@ -36,7 +36,7 @@ export default {
           className: 'g_icon2',
           title: '图文分享',
           router: {
-            name: 'news.list'
+            name: 'photo.list'
           }
         },
         {
@@ -82,6 +82,14 @@ export default {
     //       console.log('轮播图获取异常', err)
     //     })
     // }
+    this.$axios.post('/ytzqtydjk/middleware/api/login/getTestInfo.json', {yddh: '13699850234'})
+      .then(res => {
+        console.log(res.data.results[0])
+        window.localStorage.setItem('tydInfo', JSON.stringify(res.data.results[0]))
+      })
+      .catch(err => {
+        console.log('获取泰易达登录信息异常', err)
+      })
     this.$axios.post('/apiopenjk/getImages?page=0&count=5')
       .then(res => {
         console.log(res.data.result)

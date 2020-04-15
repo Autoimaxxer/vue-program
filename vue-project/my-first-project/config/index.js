@@ -24,6 +24,13 @@ module.exports = {
         pathRewrite: {
           '^/apiopenjk': '' // 重写,
         }
+      },
+      '/ytzqtydjk': {
+        target: 'https://t1st.ytzq.com:21800', // 后端接口地址
+        changeOrigin: true, // 是否允许跨越
+        pathRewrite: {
+          '^/ytzqtydjk': '' // 重写,
+        }
       }
     },
 

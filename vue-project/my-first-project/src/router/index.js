@@ -5,6 +5,7 @@ import Member from '@/components/Member/Member'
 import Search from '@/components/Search/Search'
 import Shopcart from '@/components/Shopcart/Shopcart'
 import NewsList from '@/components/News/NewsList'
+import NewsDetail from '@/components/News/NewsDetail'
 
 Vue.use(Router)
 // 注册全局组件router-view和router-link
@@ -45,9 +46,18 @@ export default new Router({
     },
     // 次级路由，新闻列表
     {
-      path: 'News/list',
+      path: '/News/list',
       name: 'news.list',
-      component: NewsList
+      component: NewsList,
+      meata: {
+        keepAlive: true
+      }
+    },
+    // 新闻详情页
+    {
+      path: '/News/detail',
+      name: 'news.detail',
+      component: NewsDetail
     }
   ]
 })

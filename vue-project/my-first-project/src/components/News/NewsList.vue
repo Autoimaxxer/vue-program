@@ -5,8 +5,7 @@
       <ul>
         <li v-for="(news,index) in newsList"
             :key="index">
-          <a href="#"
-             class="news-link">
+          <router-link :to="{name:'news.detail',query:{'id':index}}" class="news-link">
             <img class="news-img"
                  :src="news.image" />
             <div>
@@ -15,7 +14,7 @@
                 <p>{{news.passtime | covertTime('YYYY-MM-DD')}}</p>
               </div>
             </div>
-          </a>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -29,6 +28,7 @@ export default {
     }
   },
   created () {
+    // console.log(JSON.parse(window.localStorage.getItem('tydInfo')))
     this.$axios
       .get('/apiopenjk/getWangYiNews')
       .then(res => {
