@@ -6,6 +6,7 @@ import Search from '@/components/Search/Search'
 import Shopcart from '@/components/Shopcart/Shopcart'
 import NewsList from '@/components/News/NewsList'
 import NewsDetail from '@/components/News/NewsDetail'
+import PhotoList from '@/components/Photo/PhotoList'
 
 Vue.use(Router)
 // 注册全局组件router-view和router-link
@@ -58,6 +59,12 @@ export default new Router({
       path: '/News/detail',
       name: 'news.detail',
       component: NewsDetail
+    },
+    // 图文列表
+    {
+      path: '/Photo/list/:categoryId',
+      name: 'photo.list',
+      component: PhotoList
     }
   ]
 })

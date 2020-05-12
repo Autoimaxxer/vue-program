@@ -12,21 +12,28 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/doubanjk': {
-        target: 'https://douban.uieee.com', // 后端接口地址
+        target: 'https://douban.uieee.com', // 豆瓣接口
         changeOrigin: true, // 是否允许跨越
         pathRewrite: {
           '^/doubanjk': '' // 重写,
         }
       },
       '/apiopenjk': {
-        target: 'https://api.apiopen.top', // 后端接口地址
+        target: 'https://api.apiopen.top', // 常用接口
         changeOrigin: true, // 是否允许跨越
         pathRewrite: {
           '^/apiopenjk': '' // 重写,
         }
       },
+      '/txopenjk': {
+        target: 'https://pacaio.match.qq.com', // 腾讯新闻接口
+        changeOrigin: true, // 是否允许跨越
+        pathRewrite: {
+          '^/txopenjk': '' // 重写,
+        }
+      },
       '/ytzqtydjk': {
-        target: 'https://t1st.ytzq.com:21800', // 后端接口地址
+        target: 'https://t1st.ytzq.com:21800', // 泰易达接口
         changeOrigin: true, // 是否允许跨越
         pathRewrite: {
           '^/ytzqtydjk': '' // 重写,

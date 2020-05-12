@@ -36,7 +36,8 @@ export default {
           className: 'g_icon2',
           title: '图文分享',
           router: {
-            name: 'photo.list'
+            name: 'photo.list',
+            params: {categoryId: 0} // 默认传0
           }
         },
         {
