@@ -1,6 +1,6 @@
 <template>
   <div class="tmp1">
-    <nav-bar title="新闻列表" />
+    <nav-bar title="段子列表" />
     <div class="demo">
       <ul>
         <li v-for="(news,index) in newsList"

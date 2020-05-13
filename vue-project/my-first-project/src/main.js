@@ -13,6 +13,8 @@ import 'mint-ui/lib/style.css'
 import Axios from 'axios'
 // 引入自己的css
 import './assets/css/global.css'
+// 引入图标css
+import './assets/css/iconFont.css'
 // 引入自己的ul和li组件
 import MyUl from '@/components/Common/MyUl'
 import MyLi from '@/components/Common/MyLi'
