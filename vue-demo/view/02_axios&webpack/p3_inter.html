@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .cssload-dots {
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+            outline: 1px solid red;
+            filter: url(#goo);
+            -o-filter: url(#goo);
+            -ms-filter: url(#goo);
+            -webkit-filter: url(#goo);
+            -moz-filter: url(#goo);
+        }
+
+        .cssload-dot {
+            width: 0;
+            height: 0;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .cssload-dot:before {
+            content: "";
+            width: 34px;
+            height: 34px;
+            border-radius: 49px;
+            background: rgb(251, 211, 1);
+            position: absolute;
+            left: 50%;
+            transform: translateY(0);
+            -o-transform: translateY(0);
+            -ms-transform: translateY(0);
+            -webkit-transform: translateY(0);
+            -moz-transform: translateY(0);
+            margin-left: -17.5px;
+            margin-top: -17.5px;
+        }
+
+
+
+        .cssload-dot:nth-child(5):before {
+            z-index: 100;
+            width: 44.5px;
+            height: 44.5px;
+            margin-left: -21.75px;
+            margin-top: -21.75px;
+            animation: cssload-dot-colors 4.6s ease infinite;
+            -o-animation: cssload-dot-colors 4.6s ease infinite;
+            -ms-animation: cssload-dot-colors 4.6s ease infinite;
+            -webkit-animation: cssload-dot-colors 4.6s ease infinite;
+            -moz-animation: cssload-dot-colors 4.6s ease infinite;
+        }
+
+
+        .cssload-dot:nth-child(1) {
+            animation: cssload-dot-rotate-1 4.6s 0s linear infinite;
+            -o-animation: cssload-dot-rotate-1 4.6s 0s linear infinite;
+            -ms-animation: cssload-dot-rotate-1 4.6s 0s linear infinite;
+            -webkit-animation: cssload-dot-rotate-1 4.6s 0s linear infinite;
+            -moz-animation: cssload-dot-rotate-1 4.6s 0s linear infinite;
+        }
+
+        .cssload-dot:nth-child(1):before {
+            background-color: rgb(255, 50, 112);
+            animation: cssload-dot-move 4.6s 0s ease infinite;
+            -o-animation: cssload-dot-move 4.6s 0s ease infinite;
+            -ms-animation: cssload-dot-move 4.6s 0s ease infinite;
+            -webkit-animation: cssload-dot-move 4.6s 0s ease infinite;
+            -moz-animation: cssload-dot-move 4.6s 0s ease infinite;
+        }
+
+        .cssload-dot:nth-child(2) {
+            animation: cssload-dot-rotate-2 4.6s 1.15s linear infinite;
+            -o-animation: cssload-dot-rotate-2 4.6s 1.15s linear infinite;
+            -ms-animation: cssload-dot-rotate-2 4.6s 1.15s linear infinite;
+            -webkit-animation: cssload-dot-rotate-2 4.6s 1.15s linear infinite;
+            -moz-animation: cssload-dot-rotate-2 4.6s 1.15s linear infinite;
+        }
+
+        .cssload-dot:nth-child(2):before {
+            background-color: rgb(32, 139, 241);
+            animation: cssload-dot-move 4.6s 1.15s ease infinite;
+            -o-animation: cssload-dot-move 4.6s 1.15s ease infinite;
+            -ms-animation: cssload-dot-move 4.6s 1.15s ease infinite;
+            -webkit-animation: cssload-dot-move 4.6s 1.15s ease infinite;
+            -moz-animation: cssload-dot-move 4.6s 1.15s ease infinite;
+        }
+
+        .cssload-dot:nth-child(3) {
+            animation: cssload-dot-rotate-3 4.6s 2.3s linear infinite;
+            -o-animation: cssload-dot-rotate-3 4.6s 2.3s linear infinite;
+            -ms-animation: cssload-dot-rotate-3 4.6s 2.3s linear infinite;
+            -webkit-animation: cssload-dot-rotate-3 4.6s 2.3s linear infinite;
+            -moz-animation: cssload-dot-rotate-3 4.6s 2.3s linear infinite;
+        }
+
+        .cssload-dot:nth-child(3):before {
+            background-color: rgb(175, 225, 2);
+            animation: cssload-dot-move 4.6s 2.3s ease infinite;
+            -o-animation: cssload-dot-move 4.6s 2.3s ease infinite;
+            -ms-animation: cssload-dot-move 4.6s 2.3s ease infinite;
+            -webkit-animation: cssload-dot-move 4.6s 2.3s ease infinite;
+            -moz-animation: cssload-dot-move 4.6s 2.3s ease infinite;
+        }
+
+        .cssload-dot:nth-child(4) {
+            animation: cssload-dot-rotate-4 4.6s 3.45s linear infinite;
+            -o-animation: cssload-dot-rotate-4 4.6s 3.45s linear infinite;
+            -ms-animation: cssload-dot-rotate-4 4.6s 3.45s linear infinite;
+            -webkit-animation: cssload-dot-rotate-4 4.6s 3.45s linear infinite;
+            -moz-animation: cssload-dot-rotate-4 4.6s 3.45s linear infinite;
+        }
+
+        .cssload-dot:nth-child(4):before {
+            background-color: rgb(251, 211, 1);
+            animation: cssload-dot-move 4.6s 3.45s ease infinite;
+            -o-animation: cssload-dot-move 4.6s 3.45s ease infinite;
+            -ms-animation: cssload-dot-move 4.6s 3.45s ease infinite;
+            -webkit-animation: cssload-dot-move 4.6s 3.45s ease infinite;
+            -moz-animation: cssload-dot-move 4.6s 3.45s ease infinite;
+        }
+
+        @keyframes cssload-dot-move {
+            0% {
+                transform: translateY(0);
+            }
+
+            18%,
+            22% {
+                transform: translateY(-68px);
+            }
+
+            40%,
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @-o-keyframes cssload-dot-move {
+            0% {
+                -o-transform: translateY(0);
+            }
+
+            18%,
+            22% {
+                -o-transform: translateY(-68px);
+            }
+
+            40%,
+            100% {
+                -o-transform: translateY(0);
+            }
+        }
+
+        @-ms-keyframes cssload-dot-move {
+            0% {
+                -ms-transform: translateY(0);
+            }
+
+            18%,
+            22% {
+                -ms-transform: translateY(-68px);
+            }
+
+            40%,
+            100% {
+                -ms-transform: translateY(0);
+            }
+        }
+
+        @-webkit-keyframes cssload-dot-move {
+            0% {
+                -webkit-transform: translateY(0);
+            }
+
+            18%,
+            22% {
+                -webkit-transform: translateY(-68px);
+            }
+
+            40%,
+            100% {
+                -webkit-transform: translateY(0);
+            }
+        }
+
+        @-moz-keyframes cssload-dot-move {
+            0% {
+                -moz-transform: translateY(0);
+            }
+
+            18%,
+            22% {
+                -moz-transform: translateY(-68px);
+            }
+
+            40%,
+            100% {
+                -moz-transform: translateY(0);
+            }
+        }
+
+        @keyframes cssload-dot-colors {
+            0% {
+                background-color: rgb(251, 211, 1);
+            }
+
+            25% {
+                background-color: rgb(255, 50, 112);
+            }
+
+            50% {
+                background-color: rgb(32, 139, 241);
+            }
+
+            75% {
+                background-color: rgb(175, 225, 2);
+            }
+
+            100% {
+                background-color: rgb(251, 211, 1);
+            }
+        }
+
+        @-o-keyframes cssload-dot-colors {
+            0% {
+                background-color: rgb(251, 211, 1);
+            }
+
+            25% {
+                background-color: rgb(255, 50, 112);
+            }
+
+            50% {
+                background-color: rgb(32, 139, 241);
+            }
+
+            75% {
+                background-color: rgb(175, 225, 2);
+            }
+
+            100% {
+                background-color: rgb(251, 211, 1);
+            }
+        }
+
+        @-ms-keyframes cssload-dot-colors {
+            0% {
+                background-color: rgb(251, 211, 1);
+            }
+
+            25% {
+                background-color: rgb(255, 50, 112);
+            }
+
+            50% {
+                background-color: rgb(32, 139, 241);
+            }
+
+            75% {
+                background-color: rgb(175, 225, 2);
+            }
+
+            100% {
+                background-color: rgb(251, 211, 1);
+            }
+        }
+
+        @-webkit-keyframes cssload-dot-colors {
+            0% {
+                background-color: rgb(251, 211, 1);
+            }
+
+            25% {
+                background-color: rgb(255, 50, 112);
+            }
+
+            50% {
+                background-color: rgb(32, 139, 241);
+            }
+
+            75% {
+                background-color: rgb(175, 225, 2);
+            }
+
+            100% {
+                background-color: rgb(251, 211, 1);
+            }
+        }
+
+        @-moz-keyframes cssload-dot-colors {
+            0% {
+                background-color: rgb(251, 211, 1);
+            }
+
+            25% {
+                background-color: rgb(255, 50, 112);
+            }
+
+            50% {
+                background-color: rgb(32, 139, 241);
+            }
+
+            75% {
+                background-color: rgb(175, 225, 2);
+            }
+
+            100% {
+                background-color: rgb(251, 211, 1);
+            }
+        }
+
+        @keyframes cssload-dot-rotate-1 {
+            0% {
+                transform: rotate(-105deg);
+            }
+
+            100% {
+                transform: rotate(270deg);
+            }
+        }
+
+        @-o-keyframes cssload-dot-rotate-1 {
+            0% {
+                -o-transform: rotate(-105deg);
+            }
+
+            100% {
+                -o-transform: rotate(270deg);
+            }
+        }
+
+        @-ms-keyframes cssload-dot-rotate-1 {
+            0% {
+                -ms-transform: rotate(-105deg);
+            }
+
+            100% {
+                -ms-transform: rotate(270deg);
+            }
+        }
+
+        @-webkit-keyframes cssload-dot-rotate-1 {
+            0% {
+                -webkit-transform: rotate(-105deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(270deg);
+            }
+        }
+
+        @-moz-keyframes cssload-dot-rotate-1 {
+            0% {
+                -moz-transform: rotate(-105deg);
+            }
+
+            100% {
+                -moz-transform: rotate(270deg);
+            }
+        }
+
+        @keyframes cssload-dot-rotate-2 {
+            0% {
+                transform: rotate(165deg);
+            }
+
+            100% {
+                transform: rotate(540deg);
+            }
+        }
+
+        @-o-keyframes cssload-dot-rotate-2 {
+            0% {
+                -o-transform: rotate(165deg);
+            }
+
+            100% {
+                -o-transform: rotate(540deg);
+            }
+        }
+
+        @-ms-keyframes cssload-dot-rotate-2 {
+            0% {
+                -ms-transform: rotate(165deg);
+            }
+
+            100% {
+                -ms-transform: rotate(540deg);
+            }
+        }
+
+        @-webkit-keyframes cssload-dot-rotate-2 {
+            0% {
+                -webkit-transform: rotate(165deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(540deg);
+            }
+        }
+
+        @-moz-keyframes cssload-dot-rotate-2 {
+            0% {
+                -moz-transform: rotate(165deg);
+            }
+
+            100% {
+                -moz-transform: rotate(540deg);
+            }
+        }
+
+        @keyframes cssload-dot-rotate-3 {
+            0% {
+                transform: rotate(435deg);
+            }
+
+            100% {
+                transform: rotate(810deg);
+            }
+        }
+
+        @-o-keyframes cssload-dot-rotate-3 {
+            0% {
+                -o-transform: rotate(435deg);
+            }
+
+            100% {
+                -o-transform: rotate(810deg);
+            }
+        }
+
+        @-ms-keyframes cssload-dot-rotate-3 {
+            0% {
+                -ms-transform: rotate(435deg);
+            }
+
+            100% {
+                -ms-transform: rotate(810deg);
+            }
+        }
+
+        @-webkit-keyframes cssload-dot-rotate-3 {
+            0% {
+                -webkit-transform: rotate(435deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(810deg);
+            }
+        }
+
+        @-moz-keyframes cssload-dot-rotate-3 {
+            0% {
+                -moz-transform: rotate(435deg);
+            }
+
+            100% {
+                -moz-transform: rotate(810deg);
+            }
+        }
+
+        @keyframes cssload-dot-rotate-4 {
+            0% {
+                transform: rotate(705deg);
+            }
+
+            100% {
+                transform: rotate(1080deg);
+            }
+        }
+
+        @-o-keyframes cssload-dot-rotate-4 {
+            0% {
+                -o-transform: rotate(705deg);
+            }
+
+            100% {
+                -o-transform: rotate(1080deg);
+            }
+        }
+
+        @-ms-keyframes cssload-dot-rotate-4 {
+            0% {
+                -ms-transform: rotate(705deg);
+            }
+
+            100% {
+                -ms-transform: rotate(1080deg);
+            }
+        }
+
+        @-webkit-keyframes cssload-dot-rotate-4 {
+            0% {
+                -webkit-transform: rotate(705deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(1080deg);
+            }
+        }
+
+        @-moz-keyframes cssload-dot-rotate-4 {
+            0% {
+                -moz-transform: rotate(705deg);
+            }
+
+            100% {
+                -moz-transform: rotate(1080deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+
+
+    <script src="../../js/vue.js"></script>
+    <script src="../../js/axios.js"></script>
+    <script>
+        var App = {
+            data() {
+                return {
+                    isShow: false
+                }
+            },
+            template: `
+                        <div>
+                            <button @click='sendAxios'>发送请求</button>
+                            <div class="cssload-dots" v-show="isShow">
+                                <div class="cssload-dot"></div>
+                                <div class="cssload-dot"></div>
+                                <div class="cssload-dot"></div>
+                                <div class="cssload-dot"></div>
+                                <div class="cssload-dot"></div>
+                            </div>
+                        </div>
+                    `,
+            methods: {
+                //实现一个类似cookie的机制
+                //服务器 ->set-cookie:xxx  保存起来在响应拦截器中完成
+                //在青丘之前，从本地获取xxx  设置拦截器、请求头
+
+
+
+
+                sendAxios: function () {
+                    //配置拦截器
+                    //use给请求之前做的事情可以是多件，use可以多次使用
+                    this.$axios.interceptors.request.use((config) => {
+                        // console.log(config);
+
+                        //设置请求头，类似cookie
+                        var expires = localStorage.getItem('expires');
+                        if (expires) {
+                            config.headers['expires'] = expires;
+                        };
+                        this.isShow = true;
+                        return config;
+                    });
+                    //响应拦截器
+                    this.$axios.interceptors.response.use((res) => {
+                        console.log(res);//res.config
+                        //获取服务器的响应头
+                        if (res.headers.expires) {
+                            var expires = res.headers.expires;
+                            localStorage.setItem('expires', expires);
+                        };
+                        this.isShow = false;
+                        return res
+                    });
+
+                    //需求：1、在请求发起之前，展示一个loading
+                    //2、响应成功之后关闭loading
+
+                    axios.get('https://weixin.ytzq.com/servlet/json', {
+                        params: {
+                            weixinpk: 'gh_81586d5e2ea4',
+                            openid: 'oryDLji2gcZpuHiwUmCySBh3VLII',
+                            funcNo: '5001009'
+                        }
+                    }).then(function (res) {
+                        console.log('响应成功', res);
+                    }).catch(function (res) {
+                        console.log(res);
+                    })
+                }
+            }
+        };
+
+        //组件内的每一个this对象，都是属于Vue的
+        //VUe原型数据，下面的每个this对象都可以使用
+        Vue.prototype.$axios = axios;
+        new Vue({
+            el: '#app',
+            components: {
+                app: App
+            },
+            template: '<app/>'
+        })
+    </script>
+</body>
+
+</html>

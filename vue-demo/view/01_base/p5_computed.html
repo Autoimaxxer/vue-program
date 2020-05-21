@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="../../js/vue.js" type="text/javascript"></script>
+    <script>
+        var App = {
+            data: function () {
+                return {
+                    n1: 0,
+                    n2: 0,
+                    n3: 0
+                }
+            },
+            template: `
+                    <div>
+                        （<input type="text" v-model="n1"></input>
+                        +
+                        <input type="text" v-model="n2"></input>）
+                        *
+                        <input type="text" v-model="n3"></input>
+                        ={{result}}
+                    </div>
+                    `,
+            computed: {
+                result: function () {
+                    //监视对象为函数内部，只要 this 相关属性有更改，都会触发监视函数
+                    return (Number(this.n1) + Number(this.n2)) * Number(this.n3)
+                }
+            }
+        };
+        new Vue({
+            el: '#app',
+            components: {
+                'app': App
+            },
+            template: '<app/>'
+        })
+    </script>
+</body>
+
+</html>
