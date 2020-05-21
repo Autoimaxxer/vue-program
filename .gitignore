@@ -1,6 +1,6 @@
 .vscode
-node_modules
-vue-demo/
+node_modules/
+/vue-demo
 node/
-test
-static
+static/
+test/
