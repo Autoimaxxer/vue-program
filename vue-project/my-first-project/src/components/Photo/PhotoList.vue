@@ -3,7 +3,7 @@
     <nav-bar title="图文列表" />
     <ul class="tit-list">
         <li v-for="(show,index) in list" :key="index">
-            <a @click="getNews(index)" href="javascript:;">{{show.name}}</a>
+            <a @click="changRouter(index)" href="javascript:;">{{show.name}}</a>
         </li>
     </ul>
     <ul class="news-list">
@@ -20,7 +20,6 @@
             </a>
         </li>
     </ul>
-    <!-- <img class="icon icon-no-data" src="./../../assets/img/no-data.png" alt=""> -->
   </div>
 </template>
 <script>
@@ -50,36 +49,53 @@ export default {
     }
   },
   beforeRouteUpdate (to, from, next) {
+    // 该函数的触发：1、用户改变路由参数；2、用户点击按钮
+
     // 在当前路由改变，但是该组件被复用时调用
     // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
     // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
     // 可以访问组件实例 `this`
 
     // 路由复用，参数改变触发，参数为query或params都行
-    // console.log(to)
-    this.getNews(to.params.categoryId)
+    console.log(to)
+    this.getNewsById(to.params.categoryId)
     next()
   },
   created () {
-    // this.getNews('news')
-    this.getNews(0)
+    let categoryId = Number(this.$route.params.categoryId)
+    console.log(categoryId)
+    this.getNewsById(categoryId)
   },
   methods: {
     // 1、获取路由参数categoryId
     // 2、通过url拼接参数发送请求
     // 3、获取数据并渲染
-    getNews: function (categoryId) {
+
+    changRouter: function (categoryId) {
+      // 路由改变调取数据函数
+      // 1、点击按钮，push触发路由改变
+      // 2、用户改变url路由参数触发改变
+      console.log(categoryId)
+      this.$router.push({
+        name: 'photo.list',
+        params: {
+          // categoryId：categoryId,
+          categoryId // es6可以写成这种方式
+        }
+      })
+    },
+    getNewsById (id) {
       let _this = this
       //   let categoryId = Number(_this.$route.params.categoryId)
       this.$axios.get('/txopenjk/irs/rcd', { params: {
         cid: 56,
-        ext: _this.list[categoryId].ext,
+        ext: _this.list[id].ext,
         token: 'c786875b8e04da17b24ea5e332745e0f',
         num: 20,
         expIds: '20190106A13PFT%7C20190108A04MLS',
         page: 0
       }}).then(res => {
-        console.log(res)
+        // console.log(res)
         this.newsList = res.data.data
         // 判断是否无数据
         if (this.newsList.length === 0) {
