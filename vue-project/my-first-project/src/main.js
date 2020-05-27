@@ -23,6 +23,10 @@ import MyLi from '@/components/Common/MyLi'
 import NavBar from '@/components/Common/NavBar'
 // 定义moment全局日期过滤器
 import Moment from 'moment'
+
+// 使用mock
+require('./mock/index')
+
 Vue.use(MintUI)
 // 注册全局组件
 Vue.component(MyUl.name, MyUl)

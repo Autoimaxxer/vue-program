@@ -2,8 +2,14 @@
   <div>
     <nav-bar title="图文详情" />
     <p>{{newsDtail.title}}</p>
-    <p>以下为内嵌页面</p>
-    <iframe :src="newsDtail.url" frameborder="0"></iframe>
+    <button @click="testMock(1)">点击切换随机颜色图片</button>
+    <img :src="mockTest.img" alt="">
+    <p>
+        <span>点击次数</span>
+        <span>{{mockTest.click}}</span>
+    </p>
+    <!-- <p>以下为内嵌页面</p>
+    <iframe :src="newsDtail.url" frameborder="0"></iframe> -->
   </div>
 </template>
 <script>
@@ -29,13 +35,33 @@ export default {
         { name: '河南', ext: 'henan' },
         { name: '重庆', ext: 'cq' }
       ],
-      newsDtail: ''
+      newsDtail: '',
+      mockTest: {
+        click: '',
+        img: ''
+      }
+    }
+  },
+  methods: {
+    testMock (type) {
+      this.$axios.get('/mocktest/photodetail').then(res => {
+        let _data = res.data.data
+        this.mockTest.img = _data.img
+        if (type === 1) {
+          this.mockTest.click++
+        } else {
+          this.mockTest.click = _data.click
+        }
+      }).catch(res => {
+
+      })
     }
   },
   created () {
     let _this = this
     let rId = _this.$route.query.r_id
     let _id = _this.$route.query.id
+    this.testMock(0)
     this.$axios.get('/txopenjk/irs/rcd', {
       params: {
         cid: 56,
