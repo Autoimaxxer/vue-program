@@ -1,15 +1,24 @@
 <template>
-  <div>
+  <div class="temp1">
     <nav-bar title="图文详情" />
     <p>{{newsDtail.title}}</p>
     <button @click="testMock(1)">点击切换随机颜色图片</button>
-    <img :src="mockTest.img" alt="">
+    <img :src="mockTest.img" alt />
     <p>
-        <span>点击次数</span>
-        <span>{{mockTest.click}}</span>
+      <span>点击次数</span>
+      <span>{{mockTest.click}}</span>
     </p>
+    <p>
+      <span>日期</span>
+      <span>{{new Date()| covertTime('YYYY-MM-DD')}}</span>
+    </p>
+    <p>{{mockTest.text}}</p>
+    <div class="imglist">
+      <!-- <img v-for="(img,index) in mockImg" :key="index" :src="img.img" alt /> -->
+      <vue-preview :slides="mockImg"></vue-preview>
+    </div>
     <!-- <p>以下为内嵌页面</p>
-    <iframe :src="newsDtail.url" frameborder="0"></iframe> -->
+    <iframe :src="newsDtail.url" frameborder="0"></iframe>-->
   </div>
 </template>
 <script>
@@ -37,9 +46,10 @@ export default {
       ],
       newsDtail: '',
       mockTest: {
-        click: '',
-        img: ''
-      }
+        img: '',
+        click: ''
+      },
+      mockImg: []
     }
   },
   methods: {
@@ -50,6 +60,7 @@ export default {
         if (type === 1) {
           this.mockTest.click++
         } else {
+          this.mockTest.text = _data.text
           this.mockTest.click = _data.click
         }
       }).catch(res => {
@@ -62,6 +73,21 @@ export default {
     let rId = _this.$route.query.r_id
     let _id = _this.$route.query.id
     this.testMock(0)
+    this.$axios.get('/mocktest/photodetailimg').then(res => {
+      this.mockImg = res.data.data
+      this.mockImg.forEach(
+        (img, index) => {
+          img.msrc = img.img
+          img.src = img.img
+          img.title = index + 1
+          img.w = 400
+          img.h = 200
+        }
+      )
+    }).catch(res => {
+
+    })
+
     this.$axios.get('/txopenjk/irs/rcd', {
       params: {
         cid: 56,
@@ -87,6 +113,9 @@ export default {
 }
 </script>
 <style scoped>
+.temp1 {
+  padding-bottom: 60px;
+}
 iframe {
   width: 100%;
   height: 500px;

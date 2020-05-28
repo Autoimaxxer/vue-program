@@ -1,5 +1,5 @@
 <template>
-  <div class="tmp1">
+  <div class="temp1">
     <nav-bar title="图文列表" />
     <ul class="tit-list">
       <li v-for="(show,index) in list" :key="index">

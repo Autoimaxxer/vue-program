@@ -27,7 +27,7 @@ const demo1 = function () { // 模拟图文详情数据
   let demoList = {
     click: parseInt(Math.random() * 10 + 20),
     img: Random.dataImage('200x100', 'Hello Mock.js!'),
-    job: '前端工程师'
+    text: Random.paragraph(5)
   }
 
   return {
@@ -36,4 +36,28 @@ const demo1 = function () { // 模拟图文详情数据
     data: demoList
   }
 }
+const demo2 = { // 模拟一组图片
+  'data': [
+    {
+      'img': Random.dataImage('200x100')
+    },
+    {
+      'img': Random.dataImage('200x100')
+    },
+    {
+      'img': Random.dataImage('200x100')
+    },
+    {
+      'img': Random.dataImage('200x100')
+    },
+    {
+      'img': Random.dataImage('200x100')
+    },
+    {
+      'img': Random.dataImage('200x100')
+    }
+  ]
+}
+
 Mock.mock('/mocktest/photodetail', 'get', demo1)
+Mock.mock('/mocktest/photodetailimg', 'get', demo2)

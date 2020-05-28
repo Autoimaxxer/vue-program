@@ -24,6 +24,10 @@ import NavBar from '@/components/Common/NavBar'
 // 定义moment全局日期过滤器
 import Moment from 'moment'
 
+// 图片预览插件
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview)
+
 // 使用mock
 require('./mock/index')
 
