@@ -11,6 +11,10 @@ li {
   list-style: none;
 }
 
+.temp1 {
+  padding-bottom: 60px;
+}
+
 .my-gallery {
   width: 100%;
   height: 300px;

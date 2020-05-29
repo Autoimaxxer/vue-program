@@ -113,9 +113,6 @@ export default {
 }
 </script>
 <style scoped>
-.temp1 {
-  padding-bottom: 60px;
-}
 iframe {
   width: 100%;
   height: 500px;

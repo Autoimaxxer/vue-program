@@ -125,9 +125,6 @@ export default {
 }
 </script>
 <style scoped>
-.temp1 {
-  padding-bottom: 60px;
-}
 ul {
   padding: 0 5px;
 }
