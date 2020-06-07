@@ -59,5 +59,37 @@ const demo2 = { // 模拟一组图片
   ]
 }
 
+const demo3 = function (pageindex) { // 模拟评论数据
+  let demoList = [
+    {
+      name: Random.cname(),
+      text: '我是第' + pageindex + '页的评论',
+      date: '2020-06-06'
+    }, {
+      name: Random.cname(),
+      text: '我是第' + pageindex + '页的评论',
+      date: '2020-06-06'
+    }, {
+      name: Random.cname(),
+      text: '我是第' + pageindex + '页的评论',
+      date: '2020-06-06'
+    }, {
+      name: Random.cname(),
+      text: '我是第' + pageindex + '页的评论',
+      date: '2020-06-06'
+    }
+  ]
+
+  return {
+    status: 200,
+    message: 'success',
+    data: demoList
+  }
+}
+
 Mock.mock('/mocktest/photodetail', 'get', demo1)
 Mock.mock('/mocktest/photodetailimg', 'get', demo2)
+Mock.mock(/\/getcomment/, 'get', res => {
+  console.log(res.url.split('?pageindex=')[1])
+  return demo3(res.url.split('?pageindex=')[1])
+})

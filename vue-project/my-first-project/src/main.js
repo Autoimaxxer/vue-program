@@ -18,6 +18,8 @@ import './assets/css/iconFont.css'
 // 引入自己的ul和li组件
 import MyUl from '@/components/Common/MyUl'
 import MyLi from '@/components/Common/MyLi'
+// 引入评论组件
+import Comment from '@/components/Common/Comment'
 
 // 引入navbar组件
 import NavBar from '@/components/Common/NavBar'
@@ -36,6 +38,7 @@ Vue.use(MintUI)
 Vue.component(MyUl.name, MyUl)
 Vue.component(MyLi.name, MyLi)
 Vue.component(NavBar.name, NavBar)
+Vue.component(Comment.name, Comment)
 
 Vue.filter('covertTime', function (data, formatStr) {
   return Moment(data).format(formatStr)

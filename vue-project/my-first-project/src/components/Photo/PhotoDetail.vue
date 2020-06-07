@@ -1,5 +1,5 @@
 <template>
-  <div class="temp1">
+  <div class>
     <nav-bar title="图文详情" />
     <p>{{newsDtail.title}}</p>
     <button @click="testMock(1)">点击切换随机颜色图片</button>
@@ -19,6 +19,9 @@
     </div>
     <!-- <p>以下为内嵌页面</p>
     <iframe :src="newsDtail.url" frameborder="0"></iframe>-->
+
+    <!-- 使用评论组件 -->
+    <comment></comment>
   </div>
 </template>
 <script>

@@ -16,8 +16,18 @@ li {
 }
 
 .my-gallery {
-  width: 100%;
+  margin: 0 auto;
+  width: 90%;
   height: 300px;
   display: flex;
   flex-wrap: wrap;
+}
+
+.my-gallery figure {
+  display: inline-block;
+  width: 45%;
+}
+
+.my-gallery img {
+  width: 100%;
 }
