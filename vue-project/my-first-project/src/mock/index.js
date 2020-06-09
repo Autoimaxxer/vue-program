@@ -27,7 +27,7 @@ const demo1 = function () { // 模拟图文详情数据
   let demoList = {
     click: parseInt(Math.random() * 10 + 20),
     img: Random.dataImage('200x100', 'Hello Mock.js!'),
-    text: Random.paragraph(5)
+    text: Random.cword(100)
   }
 
   return {
@@ -36,54 +36,35 @@ const demo1 = function () { // 模拟图文详情数据
     data: demoList
   }
 }
-const demo2 = { // 模拟一组图片
-  'data': [
-    {
-      'img': Random.dataImage('200x100')
-    },
-    {
-      'img': Random.dataImage('200x100')
-    },
-    {
-      'img': Random.dataImage('200x100')
-    },
-    {
-      'img': Random.dataImage('200x100')
-    },
-    {
-      'img': Random.dataImage('200x100')
-    },
-    {
-      'img': Random.dataImage('200x100')
-    }
-  ]
+const demo2 = function () { // 模拟一组图片
+  let _data = Mock.mock({
+    'list|6': [
+      {
+        img: '@dataImage(200x100)'
+      }
+    ]
+  })
+  return {
+    status: 200,
+    message: 'success',
+    data: _data
+  }
 }
 
 const demo3 = function (pageindex) { // 模拟评论数据
-  let demoList = [
-    {
-      name: Random.cname(),
-      text: '我是第' + pageindex + '页的评论',
-      date: '2020-06-06'
-    }, {
-      name: Random.cname(),
-      text: '我是第' + pageindex + '页的评论',
-      date: '2020-06-06'
-    }, {
-      name: Random.cname(),
-      text: '我是第' + pageindex + '页的评论',
-      date: '2020-06-06'
-    }, {
-      name: Random.cname(),
-      text: '我是第' + pageindex + '页的评论',
-      date: '2020-06-06'
-    }
-  ]
-
+  let demoList1 = Mock.mock({
+    'list|5': [
+      {
+        name: '@cname',
+        text: '@cword(20)' + '第' + pageindex + '页',
+        date: '@now(day)'
+      }
+    ]
+  })
   return {
     status: 200,
     message: 'success',
-    data: demoList
+    data: demoList1
   }
 }
 

@@ -7,11 +7,14 @@
     <textarea name id></textarea>
     <div class="c-btn-box">
       <mt-button size="large" type="primary">发表评论</mt-button>
+      <ul class="comment-list">
+        <li v-for="(msg,index) in msgs" :key="index">
+          {{msg.name}}：{{msg.text}}{{msg.date| relativeTime}}
+        </li>
+      </ul>
       <mt-button size="large" type="danger" plain>加载更多</mt-button>
     </div>
-    <ul class="comment-list">
-      <li></li>
-    </ul>
+
   </div>
 </template>
 <script>
@@ -19,14 +22,20 @@ export default {
   name: 'comment',
   props: ['cid'], // 评论需要的id
   data () {
-    return {}
+    return {
+      msgs: []
+    }
   },
   created () {
     // 使用此组件，判断是否有页码，无则默认为第1页，有则根据页码拉取不同数据
     let id = this.$route.query.page || '1'
     this.$axios.get(`/mocktest/getcomment/${this.cid}?pageindex=${id}`)
-      .then(res => { console.log(res) })
-      .catch(res => { console.log('评论获取失败') })
+      .then(res => {
+        console.log(res.data.data)
+        this.msgs = res.data.data.list
+      }).catch(res => {
+        console.log('评论获取失败')
+      })
   }
 }
 </script>

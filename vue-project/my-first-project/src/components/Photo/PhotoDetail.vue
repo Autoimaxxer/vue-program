@@ -21,7 +21,7 @@
     <iframe :src="newsDtail.url" frameborder="0"></iframe>-->
 
     <!-- 使用评论组件 -->
-    <comment></comment>
+    <comment :cid='$route.query.id'></comment>
   </div>
 </template>
 <script>
@@ -77,7 +77,8 @@ export default {
     let _id = _this.$route.query.id
     this.testMock(0)
     this.$axios.get('/mocktest/photodetailimg').then(res => {
-      this.mockImg = res.data.data
+      console.log(res)
+      this.mockImg = res.data.data.list
       this.mockImg.forEach(
         (img, index) => {
           img.msrc = img.img
@@ -108,7 +109,6 @@ export default {
           _this.newsDtail = _data[i]
         }
       }
-      console.log(_this.newsDtail)
     }).catch(res => {
 
     })

@@ -43,6 +43,11 @@ Vue.component(Comment.name, Comment)
 Vue.filter('covertTime', function (data, formatStr) {
   return Moment(data).format(formatStr)
 })
+Vue.filter('relativeTime', function (previousTime) {
+  return Moment(previousTime).fromNow()
+})
+// 设置中文显示
+Moment.locale('zh-cn')
 // 配置公共URL
 // Axios.defaults.baseURL = 'https://douban.uieee.com'
 Vue.prototype.$axios = Axios
