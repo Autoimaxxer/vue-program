@@ -1,5 +1,5 @@
 # 一个基础的vue-demo
-> 一个完整的vue练手项目
+> 项目比较简单，单纯作为个人的练手项目，用以把所学的串联起来
 
 ## Build Setup
 
@@ -27,9 +27,9 @@ npm test
 ```
 
 # 技术栈
-1.  使用框架：[vue](https://github.com/vuejs/vue)、[vue-router](https://github.com/vuejs/vue-router)
-2.  UI组件库：mint-ui
-3.  状态管理：vuex
-4.  使用请求：axios
-5.  mock：mockjs
-6.  搭建环境：babel-eslint、eslint、prettier、husky、lint-staged
++  使用框架：[vue](https://github.com/vuejs/vue)、[vue-router](https://github.com/vuejs/vue-router)
++  UI组件库：mint-ui
++  状态管理：vuex
++  使用请求：axios
++  mock：mockjs
++  搭建环境：babel-eslint、eslint、prettier、husky、lint-staged
