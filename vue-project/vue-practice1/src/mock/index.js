@@ -53,10 +53,11 @@ const demo2 = function () { // 模拟一组图片
 
 const demo3 = function (pageindex) { // 模拟评论数据
   let demoList1 = Mock.mock({
-    'list|5': [
+    'list|0-50': [
       {
         name: '@cname',
-        text: '@cword(20)' + '第' + pageindex + '页',
+        // text: '@cword(20)' + '第' + pageindex + '页',
+        text: '@cword(20,30)',
         date: '@now(day)'
       }
     ]
@@ -71,6 +72,7 @@ const demo3 = function (pageindex) { // 模拟评论数据
 Mock.mock('/mocktest/photodetail', 'get', demo1)
 Mock.mock('/mocktest/photodetailimg', 'get', demo2)
 Mock.mock(/\/getcomment/, 'get', res => {
+  console.log(res.url)
   console.log(res.url.split('?pageindex=')[1])
   return demo3(res.url.split('?pageindex=')[1])
 })
