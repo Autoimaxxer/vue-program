@@ -1,6 +1,5 @@
-# my-first-project
-
-> y
+# 一个基础的vue-demo
+> 项目比较简单，单纯作为个人的练手项目，用以把所学的串联起来
 
 ## Build Setup
 
@@ -27,4 +26,10 @@ npm run e2e
 npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# 技术栈
++  使用框架：[vue](https://github.com/vuejs/vue)、[vue-router](https://github.com/vuejs/vue-router)
++  UI组件库：[mint-ui](https://github.com/ElemeFE/mint-ui)
++  状态管理：[vuex](https://github.com/vuejs/vuex)
++  使用请求：[axios](https://github.com/axios/axios)
++  mock：[mockjs](https://github.com/nuysoft/Mock)
++  搭建环境：[babel-eslint](https://github.com/babel/babel-eslint)、[eslint](https://eslint.org/)、[prettier](https://prettier.io/)
