@@ -28,8 +28,8 @@ npm test
 
 # 技术栈
 +  使用框架：[vue](https://github.com/vuejs/vue)、[vue-router](https://github.com/vuejs/vue-router)
-+  UI组件库：mint-ui
-+  状态管理：vuex
-+  使用请求：axios
-+  mock：mockjs
-+  搭建环境：babel-eslint、eslint、prettier、husky、lint-staged
++  UI组件库：[mint-ui](https://github.com/ElemeFE/mint-ui)
++  状态管理：[vuex](https://github.com/vuejs/vuex)
++  使用请求：[axios](https://github.com/axios/axios)
++  mock：[mockjs](https://github.com/nuysoft/Mock)
++  搭建环境：[babel-eslint](https://github.com/babel/babel-eslint)、[eslint](https://eslint.org/)、[prettier](https://prettier.io/)
