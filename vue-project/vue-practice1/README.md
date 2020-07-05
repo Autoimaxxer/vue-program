@@ -27,14 +27,9 @@ npm test
 ```
 
 # 技术栈
-使用框架：[vue](https://github.com/vuejs/vue)、[vue-router](https://github.com/vuejs/vue-router)
-
-UI组件库：mint-ui
-
-状态管理：vuex
-
-使用请求：axios
-
-mock：mockjs
-
-搭建环境：babel-eslint、eslint、prettier、husky、lint-staged
+.使用框架：[vue](https://github.com/vuejs/vue)、[vue-router](https://github.com/vuejs/vue-router)
+.UI组件库：mint-ui
+.状态管理：vuex
+.使用请求：axios
+.mock：mockjs
+.搭建环境：babel-eslint、eslint、prettier、husky、lint-staged
