@@ -1,6 +1,5 @@
-# vue-practice1
-
-> y
+# 一个基础的vue-demo
+> 一个完整的vue练手项目
 
 ## Build Setup
 
