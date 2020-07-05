@@ -26,4 +26,10 @@ npm run e2e
 npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# 技术栈
+使用框架：vue、vue-router
+UI组件库：mint-ui
+状态管理：vuex、
+使用请求：axios
+mock：mockjs
+搭建环境：babel-eslint、eslint、prettier、husky、lint-staged
