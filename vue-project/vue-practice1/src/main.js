@@ -30,6 +30,20 @@ import Moment from 'moment'
 import VuePreview from 'vue-preview'
 Vue.use(VuePreview)
 
+// 配置请求拦截器，显示loading图标
+Axios.interceptors.request.use(function (config) {
+  MintUI.Indicator.open({
+    text: '玩命加载中...'
+  })
+  return config
+})
+// 配置响应拦截器，关闭loading图标
+Axios.interceptors.response.use(function (response) {
+  MintUI.Indicator.close()
+  // response.config 类似 上面config
+  return response
+})
+
 // 使用mock
 require('./mock/index')
 

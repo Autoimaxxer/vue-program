@@ -44,7 +44,8 @@ export default {
           className: 'g_icon3',
           title: '商品展示',
           router: {
-            name: 'news.list'
+            name: 'goods.list',
+            query: { id: 1 }
           }
         },
         {

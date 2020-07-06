@@ -68,11 +68,28 @@ const demo3 = function (pageindex) { // 模拟评论数据
     data: demoList1
   }
 }
-
+const demo4 = function () { // 模拟商品列表数据
+  let demoList1 = Mock.mock({
+    'list|5-50': [
+      {
+        img: '@dataImage(100x200)',
+        newprice: '@natural(80,100)',
+        oldprice: '@natural(500,1000)',
+        name: '@cword(3,6)',
+        desc: '@cword(20,30)',
+        count: '@natural(666,999)'
+      }
+    ]
+  })
+  return {
+    status: 200,
+    message: 'success',
+    data: demoList1
+  }
+}
 Mock.mock('/mocktest/photodetail', 'get', demo1)
 Mock.mock('/mocktest/photodetailimg', 'get', demo2)
 Mock.mock(/\/getcomment/, 'get', res => {
-  console.log(res.url)
-  console.log(res.url.split('?pageindex=')[1])
   return demo3(res.url.split('?pageindex=')[1])
 })
+Mock.mock('/mocktest/goodslist', 'get', demo4)
