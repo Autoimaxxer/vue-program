@@ -1,11 +1,7 @@
 <template>
   <div>
     <!-- 上有轮播图，下有九宫格 -->
-    <mt-swipe :auto="2000">
-      <mt-swipe-item v-for="(img,index) in imgs" :key="index">
-        <img :src="img.img" />
-      </mt-swipe-item>
-    </mt-swipe>
+    <my-swiper url="/apiopenjk/getImages?page=0&count=5"></my-swiper>
     <div class="grid">
       <my-ul>
         <my-li v-for="(grid,index) in grids" :key="index">
@@ -23,7 +19,6 @@ export default {
   data () {
     return {
       msg: 'Home',
-      imgs: [], // 轮播图数据
       grids: [
         {
           className: 'g_icon1',
@@ -45,7 +40,7 @@ export default {
           title: '商品展示',
           router: {
             name: 'goods.list',
-            query: { id: 1 }
+            query: { page: 1 }
           }
         },
         {
@@ -91,27 +86,11 @@ export default {
     //   .catch(err => {
     //     console.log('获取泰易达登录信息异常', err)
     //   })
-    this.$axios.post('/apiopenjk/getImages?page=0&count=5')
-      .then(res => {
-        // console.log(res.data.result)
-        this.imgs = res.data.result
-      })
-      .catch(err => {
-        console.log('轮播图获取异常', err)
-      })
   }
 
 }
 </script>
 <style scoped>
-.mint-swipe {
-  height: 200px;
-}
-.mint-swipe img {
-  margin: 0 auto;
-  display: block;
-  height: 100%;
-}
 /* 相当于全局（需要在上面的style标签加上scoped） */
 div {
   /* background: red; */

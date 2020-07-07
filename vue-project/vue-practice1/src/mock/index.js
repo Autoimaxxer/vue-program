@@ -68,14 +68,37 @@ const demo3 = function (pageindex) { // 模拟评论数据
     data: demoList1
   }
 }
-const demo4 = function () { // 模拟商品列表数据
-  let demoList1 = Mock.mock({
+const demo4 = function (page) { // 模拟商品列表数据
+  console.log(page)
+  let demoList = Mock.mock({
     'list|5-50': [
       {
         img: '@dataImage(100x200)',
         newprice: '@natural(80,100)',
         oldprice: '@natural(500,1000)',
-        name: '@cword(3,6)',
+        name: '@cword(15,25)',
+        desc: '@cword(20,30)',
+        count: '@natural(666,999)'
+      }
+    ]
+  })
+  if (Number(page) >= 3) {
+    demoList = { list: [] }
+  }
+  return {
+    status: 200,
+    message: 'success',
+    data: demoList
+  }
+}
+const demo5 = function (page) { // 模拟商品详情轮播图
+  let demoList = Mock.mock({
+    'list|5': [
+      {
+        img: '@dataImage(100x200)',
+        newprice: '@natural(80,100)',
+        oldprice: '@natural(500,1000)',
+        name: '@cword(15,25)',
         desc: '@cword(20,30)',
         count: '@natural(666,999)'
       }
@@ -84,7 +107,7 @@ const demo4 = function () { // 模拟商品列表数据
   return {
     status: 200,
     message: 'success',
-    data: demoList1
+    data: demoList
   }
 }
 Mock.mock('/mocktest/photodetail', 'get', demo1)
@@ -92,4 +115,7 @@ Mock.mock('/mocktest/photodetailimg', 'get', demo2)
 Mock.mock(/\/getcomment/, 'get', res => {
   return demo3(res.url.split('?pageindex=')[1])
 })
-Mock.mock('/mocktest/goodslist', 'get', demo4)
+Mock.mock(/\/goodslist/, 'get', res => {
+  return demo4(res.url.split('?pageindex=')[1])
+})
+Mock.mock(/\/goodsImgList/, 'get', demo5)

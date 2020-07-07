@@ -9,6 +9,7 @@ import NewsDetail from '@/components/News/NewsDetail'
 import PhotoList from '@/components/Photo/PhotoList'
 import PhotoDetail from '@/components/Photo/PhotoDetail'
 import GoodsList from '@/components/Goods/GoodsList'
+import GoodsDetail from '@/components/Goods/GoodsDetail'
 
 Vue.use(Router)
 // 注册全局组件router-view和router-link
@@ -79,6 +80,12 @@ export default new Router({
       name: 'goods.list',
       path: '/Goods/list',
       component: GoodsList
+    },
+    // 商品详情
+    {
+      name: 'goods.detail',
+      path: '/Goods/detail/:id',
+      component: GoodsDetail
     }
   ]
 })

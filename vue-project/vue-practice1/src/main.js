@@ -20,9 +20,10 @@ import MyUl from '@/components/Common/MyUl'
 import MyLi from '@/components/Common/MyLi'
 // 引入评论组件
 import Comment from '@/components/Common/Comment'
-
 // 引入navbar组件
 import NavBar from '@/components/Common/NavBar'
+// 定义全局轮播图组件
+import MySwiper from '@/components/Common/MySwiper'
 // 定义moment全局日期过滤器
 import Moment from 'moment'
 
@@ -51,6 +52,7 @@ Vue.use(MintUI)
 // 注册全局组件
 Vue.component(MyUl.name, MyUl)
 Vue.component(MyLi.name, MyLi)
+Vue.component(MySwiper.name, MySwiper)
 Vue.component(NavBar.name, NavBar)
 Vue.component(Comment.name, Comment)
 
@@ -59,6 +61,10 @@ Vue.filter('covertTime', function (data, formatStr) {
 })
 Vue.filter('relativeTime', function (previousTime) {
   return Moment(previousTime).fromNow()
+})
+// 处理字符串过长的过滤器
+Vue.filter('covertStr', function (str, count) {
+  return str.substring(0, count) + '...'
 })
 // 设置中文显示
 Moment.locale('zh-cn')
