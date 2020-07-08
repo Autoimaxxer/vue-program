@@ -69,7 +69,6 @@ const demo3 = function (pageindex) { // 模拟评论数据
   }
 }
 const demo4 = function (page) { // 模拟商品列表数据
-  console.log(page)
   let demoList = Mock.mock({
     'list|5-50': [
       {
@@ -91,18 +90,33 @@ const demo4 = function (page) { // 模拟商品列表数据
     data: demoList
   }
 }
-const demo5 = function (page) { // 模拟商品详情轮播图
+const demo5 = function () { // 模拟商品详情轮播图
   let demoList = Mock.mock({
     'list|5': [
       {
-        img: '@dataImage(100x200)',
-        newprice: '@natural(80,100)',
-        oldprice: '@natural(500,1000)',
-        name: '@cword(15,25)',
-        desc: '@cword(20,30)',
-        count: '@natural(666,999)'
+        img: '@dataImage(100x200)'
       }
     ]
+  })
+  return {
+    status: 200,
+    message: 'success',
+    data: demoList
+  }
+}
+const demo6 = function () { // 模拟商品详情信息
+  let demoList = Mock.mock({
+    'info': {
+      title: '@cword(20,30)',
+      click: '@natural(3,30)',
+      add_time: '@datetime()',
+      content: '@cword(30.50)',
+      newprice: '@natural(80,100)',
+      oldprice: '@natural(500,1000)',
+      rest: '@natural(500,1000)',
+      goods_id: '@string(upper,3)' + '@natural(11111,99999)'
+    }
+
   })
   return {
     status: 200,
@@ -119,3 +133,4 @@ Mock.mock(/\/goodslist/, 'get', res => {
   return demo4(res.url.split('?pageindex=')[1])
 })
 Mock.mock(/\/goodsImgList/, 'get', demo5)
+Mock.mock(/\/goodsInfo/, 'get', demo6)

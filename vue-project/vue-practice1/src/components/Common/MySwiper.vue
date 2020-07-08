@@ -17,13 +17,11 @@ export default {
   created () {
     this.$axios.get(this.url)
       .then(res => {
-        console.log(res.data.result)
         if (res.data.result) {
           this.imgs = res.data.result
         } else {
           this.imgs = res.data.data.list
         }
-        console.log(this.imgs)
       })
       .catch(err => {
         console.log('轮播图获取异常', err)
