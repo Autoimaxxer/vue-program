@@ -15,9 +15,9 @@
         </li>
         <li class="g-number">
           购买数量：
-          <span>-</span>
-          <span>1</span>
-          <span>+</span>
+          <span @click="substract">-</span>
+          <span>{{pickNum}}</span>
+          <span @click="add">+</span>
         </li>
         <li>
           <mt-button type="primary">立即购买</mt-button>
@@ -30,7 +30,6 @@
         </li>
       </ul>
     </div>
-
     <div class="g-data">
       <ul>
         <li>商品参数</li>
@@ -39,23 +38,66 @@
         <li>上架时间：{{goodsInfo.add_time | covertTime('YYYY-MM-DD')}}</li>
       </ul>
     </div>
+    <div class="g-info-btn">
+      <mt-button @click="showPhotoInfo" plain type="primary" size="lager">图文介绍</mt-button>
+      <mt-button @click="goodsComment" plain type="danger" size="lager">商品评论</mt-button>
+    </div>
   </div>
 </template>
 <script>
+import EventBus from '@/EventBus'
 export default {
   data () {
     return {
       isExist: false, // 小球移除
-      goodsInfo: {} // 商品详情信息
+      goodsInfo: {}, // 商品详情信息
+      pickNum: 1 // 加入购物车数量
     }
   },
   methods: {
+    add () {
+      if (this.goodsInfo.rest <= this.pickNum) {
+        return
+      }
+      this.pickNum++
+    },
+    substract () {
+      if (this.pickNum <= 1) {
+        return
+      }
+      this.pickNum--
+    },
     insertBall () {
       this.isExist = true
     },
     afterEnter () {
-      this.isExist = false // 移除元素
       // xxDOM操作，接着VUE的DOM操作之后
+      this.isExist = false // 移除元素
+
+      // 通知APP组件增加数量
+      EventBus.$emit('addShopcart', this.pickNum)
+    },
+
+    // 图文介绍
+    showPhotoInfo () {
+      // 编程导航
+      this.$router.push({
+        name: 'photo.info',
+        querr: {
+          id: this.$route.params.id
+        }
+      })
+    },
+    // 显示商品评论
+    goodsComment () {
+      // 编程导航 goods.comment -> 使用评论子组件
+      // 需要商品的id
+      this.$router.push({
+        name: 'goods.comment',
+        querr: {
+          id: this.$route.params.id
+        }
+      })
     }
   },
   created () {
@@ -116,5 +158,10 @@ export default {
   100% {
     transform: translate3d(140px, 300px, 0);
   }
+}
+.g-info-btn button {
+  display: block;
+  width: 90%;
+  margin: 20px auto 0;
 }
 </style>

@@ -113,7 +113,7 @@ const demo6 = function () { // 模拟商品详情信息
       content: '@cword(30.50)',
       newprice: '@natural(80,100)',
       oldprice: '@natural(500,1000)',
-      rest: '@natural(500,1000)',
+      rest: '@natural(3,10)',
       goods_id: '@string(upper,3)' + '@natural(11111,99999)'
     }
 

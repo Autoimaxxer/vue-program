@@ -14,6 +14,7 @@
       <mt-tab-item id="shopcart">
         <img @click="changeHash" slot="icon" src="./assets/img/tab_gwc.png" />
         购物车
+        <mt-badge type="error" size="small">{{num}}</mt-badge>
       </mt-tab-item>
       <mt-tab-item id="search">
         <img @click="changeHash" slot="icon" src="./assets/img/tab_search.png" />
@@ -23,11 +24,20 @@
   </div>
 </template>
 <script>
+import EventBus from './EventBus.js'
+
 export default {
   data () {
     return {
-      selected: ''
+      selected: '',
+      num: 0
     }
+  },
+  created () {
+    EventBus.$on('addShopcart', data => {
+      console.log(data)
+      this.num += 5
+    })
   },
   methods: {
     changeHash () {

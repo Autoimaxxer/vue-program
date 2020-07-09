@@ -10,7 +10,7 @@
       >
         <ul>
           <li v-for="(item,index) in list" :key="index">
-            <router-link :to="{name:'goods.detail',params:{id:'goods.id'}}">
+            <router-link :to="{name:'goods.detail',params:{id:index}}">
               <img :src="item.img" alt />
               <div class="title">{{item.name | covertStr(18)}}</div>
               <div class="desc">
