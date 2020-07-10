@@ -1,7 +1,8 @@
 <template>
   <div>
     <!-- 上有轮播图，下有九宫格 -->
-    <my-swiper url="/apiopenjk/getImages?page=0&count=5"></my-swiper>
+    <!-- <my-swiper url="/apiopenjk/getImages?page=0&count=5"></my-swiper> -->
+    <my-swiper url="/mocktest/goodsImgList"></my-swiper>
     <div class="grid">
       <my-ul>
         <my-li v-for="(grid,index) in grids" :key="index">

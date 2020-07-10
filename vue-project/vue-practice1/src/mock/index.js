@@ -113,11 +113,47 @@ const demo6 = function () { // 模拟商品详情信息
       content: '@cword(30.50)',
       newprice: '@natural(80,100)',
       oldprice: '@natural(500,1000)',
-      rest: '@natural(3,10)',
+      rest: '@natural(5,100)',
       goods_id: '@string(upper,3)' + '@natural(11111,99999)'
     }
 
   })
+  return {
+    status: 200,
+    message: 'success',
+    data: demoList
+  }
+}
+const demo7 = function () { // 模拟商品图文介绍信息
+  let demoList = Mock.mock({
+    'info': {
+      type: '@cword(5)',
+      name: '@cword(10)',
+      top_comments_name: '@cword(3,8)',
+      top_comments_content: '@cword(10,30)',
+      passtime: '@datetime()',
+      images: '@dataImage(100x200)'
+    }
+
+  })
+  return {
+    status: 200,
+    message: 'success',
+    data: demoList
+  }
+}
+const demo8 = function (count) { // 模拟购物车数据
+  let demoList = Mock.mock({
+    'list|100': [
+      {
+        type: '@cword(5)',
+        price: '@natural(200,500)',
+        title: '@cword(3,8)',
+        image: '@dataImage(100x200)'
+      }
+    ]
+  })
+  demoList = { list: demoList.list.slice(0, count) }
   return {
     status: 200,
     message: 'success',
@@ -134,3 +170,7 @@ Mock.mock(/\/goodslist/, 'get', res => {
 })
 Mock.mock(/\/goodsImgList/, 'get', demo5)
 Mock.mock(/\/goodsInfo/, 'get', demo6)
+Mock.mock(/\/photoInfo/, 'get', demo7)
+Mock.mock(/\/getshopcarlist/, 'get', res => {
+  return demo8(res.url.split('?count=')[1])
+})

@@ -20,8 +20,8 @@
           <span @click="add">+</span>
         </li>
         <li>
-          <mt-button type="primary">立即购买</mt-button>
-          <mt-button type="danger" @click="insertBall">加入购物车</mt-button>
+          <mt-button type="primary" size="small">立即购买</mt-button>
+          <mt-button type="danger" size="small" @click="insertBall">加入购物车</mt-button>
         </li>
         <li>
           <transition name="ball" @after-enter="afterEnter">
@@ -39,13 +39,14 @@
       </ul>
     </div>
     <div class="g-info-btn">
-      <mt-button @click="showPhotoInfo" plain type="primary" size="lager">图文介绍</mt-button>
-      <mt-button @click="goodsComment" plain type="danger" size="lager">商品评论</mt-button>
+      <mt-button @click="showPhotoInfo" plain type="primary" size="large">图文介绍</mt-button>
+      <mt-button @click="goodsComment" plain type="danger" size="large">商品评论</mt-button>
     </div>
   </div>
 </template>
 <script>
 import EventBus from '@/EventBus'
+import GoodsTools from '@/GoodsTools'
 export default {
   data () {
     return {
@@ -76,6 +77,12 @@ export default {
 
       // 通知APP组件增加数量
       EventBus.$emit('addShopcart', this.pickNum)
+
+      // 添加到本地存储
+      GoodsTools.add({
+        id: this.goodsInfo.goods_id,
+        num: this.pickNum
+      })
     },
 
     // 图文介绍
@@ -158,10 +165,5 @@ export default {
   100% {
     transform: translate3d(140px, 300px, 0);
   }
-}
-.g-info-btn button {
-  display: block;
-  width: 90%;
-  margin: 20px auto 0;
 }
 </style>
