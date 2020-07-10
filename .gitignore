@@ -1,8 +1,4 @@
 .vscode
 node_modules
-vue-demo/**/node_modules
-vue-demo/**/dist
-vue-demo/**/build.js
-node/**/node_modules
 */static/
 test/
