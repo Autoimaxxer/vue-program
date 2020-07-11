@@ -37,6 +37,7 @@
 // <img :src='ImgSrc' />
 
 export default {
+  props: ['apprefs'],
   data () {
     return {
       wrapperHeight: '',
@@ -46,7 +47,8 @@ export default {
     }
   },
   mounted () {
-    this.wrapperHeight = document.documentElement.clientHeight - 95
+    // 装载数据完毕，接收参数
+    this.wrapperHeight = document.documentElement.clientHeight - this.apprefs.appHeader.$el.offsetHeight - this.apprefs.appFooter.$el.offsetHeight
   },
   created () {
     this.loadByPage(this.page)
