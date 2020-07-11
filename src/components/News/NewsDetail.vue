@@ -4,7 +4,7 @@
     <div>
       <p class="news-title">{{newsDetail.text}}</p>
       <div class="news-tit-box">
-        <span>点击第{{Number(id)+1}}个段子</span>
+        <span>点击第{{Number(id)+1}}个新闻</span>
         <span>分类：{{newsDetail.type}}</span>
         <span>时间：{{newsDetail.passtime | covertTime('YYYY年MM月DD日')}}</span>
       </div>
@@ -23,42 +23,17 @@ export default {
     return {
       title: '', // 变化的标题
       id: '',
-      newsDetail: {} // 段子详情
+      newsDetail: {} // 新闻详情
     }
   },
   created () {
 
   },
   methods: {
-    loadNewsDetail () {
-      // 这里获取地址栏参数是 route，不是router
-      console.log(this.$route.query.id)
-      var _this = this
-      _this.id = this.$route.query.id
-      const sid = this.$route.query.sid
-      // this.$axios.get('https://weixin.ytzq.com/servlet/json', {
-      //   params: { weixinpk: 'gh_9a6fe4a350e3', openid: 'oheoxs-KkM5N2FKVvYolifOeGNwA', funcNo: '1002004', article_id: '204' }
-      // }).then(function (res) {
-      //   console.log(res.data.dataOut[0])
-      //   _this.zx_content = res.data.dataOut[0]
-      // }).catch(function (res) {
-      //   console.log(res)
-      // })
-      this.$axios.get('/apiopenjk/getSingleJoke', {
-        params: { sid: sid }
-      }).then(function (res) {
-        console.log(res.data.result)
-        _this.newsDetail = res.data.result
-        console.log(this.newsDetail)
-      }).catch(function (res) {
-        console.log(res)
-      })
-    },
     loadPhotoIfno () {
       this.$axios.get('/mocktest/photoInfo').then(res => {
-        console.log(res.data.result)
+        // console.log(res.data.result)
         this.newsDetail = res.data.data.info
-        console.log(this.newsDetail)
       }).catch(res => {
         console.log(res)
       })
@@ -70,31 +45,24 @@ export default {
     // 2、如果from是新闻列表，给title为新闻详情
     // 3、如果from是商品详情，给title为商品图文介绍
     let title = ''
-    let type = 1 // 1为段子详情，2为商品图文介绍
     if (from.name === null) {
       // news.detail
       // photo.info
       if (to.name === 'news.detail') {
-        title = '段子详情'
+        title = '新闻详情'
       } else if (to.name === 'photo.info') {
         title = '商品图文介绍'
-        type = 2
       }
     } else if (from.name === 'news.list') {
-      title = '段子详情'
+      title = '新闻详情'
     } else if (from.name === 'goods.detail') {
       title = '商品图文介绍'
-      type = 2
     }
     // 最终全部放行
     next(vm => {
       // 通过 `vm` 访问组件实例
       vm.title = title
-      if (type === 1) {
-        vm.loadNewsDetail()
-      } else {
-        vm.loadPhotoIfno()
-      }
+      vm.loadPhotoIfno()
     })
   }
 }

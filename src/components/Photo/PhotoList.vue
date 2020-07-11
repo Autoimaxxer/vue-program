@@ -8,23 +8,15 @@
     </ul>
     <ul class="news-list">
       <li v-for="(news,index) in newsList" :key="index">
-        <!-- <a :href="news.vurl">
-          <img v-lazy="news.bimg" alt />
+        <router-link
+          :to="{name:'photo.detail',query:{title:list[$route.params.categoryId].name,id:index}}"
+        >
+          <img v-lazy="news.img" alt />
           <div>
             <p>{{news.title}}</p>
             <p>
               <span>来源：{{news.source}}</span>
-              <span>时间：{{news.publish_time | covertTime('YYYY-MM-DD')}}</span>
-            </p>
-          </div>
-        </a>-->
-        <router-link :to="{name:'photo.detail',query:{id:news.id,r_id:$route.params.categoryId}}">
-          <img v-lazy="news.bimg" alt />
-          <div>
-            <p>{{news.title}}</p>
-            <p>
-              <span>来源：{{news.source}}</span>
-              <span>时间：{{news.publish_time | covertTime('YYYY-MM-DD')}}</span>
+              <span>时间：{{news.time | covertTime('YYYY-MM-DD')}}</span>
             </p>
           </div>
         </router-link>
@@ -73,7 +65,6 @@ export default {
   },
   created () {
     let categoryId = Number(this.$route.params.categoryId)
-    console.log(categoryId)
     this.getNewsById(categoryId)
   },
   methods: {
@@ -85,7 +76,6 @@ export default {
       // 路由改变调取数据函数
       // 1、点击按钮，push触发路由改变
       // 2、用户改变url路由参数触发改变
-      console.log(categoryId)
       this.$router.push({
         name: 'photo.list',
         params: {
@@ -95,23 +85,11 @@ export default {
       })
     },
     getNewsById (id) {
-      let _this = this
-      //   let categoryId = Number(_this.$route.params.categoryId)
-      this.$axios.get('/txopenjk/irs/rcd', {
-        params: {
-          cid: 56,
-          ext: _this.list[id].ext,
-          token: 'c786875b8e04da17b24ea5e332745e0f',
-          num: 20,
-          expIds: '20190106A13PFT%7C20190108A04MLS',
-          page: 0
-        }
-      }).then(res => {
+      this.$axios.get('/mocktest/photolist?title=' + this.list[id].name).then(res => {
         // console.log(res)
-        this.newsList = res.data.data
+        this.newsList = res.data.data.list
         // 判断是否无数据
         if (this.newsList.length === 0) {
-          console.log(111)
           this.$toast({
             message: '暂无数据',
             iconClass: 'no-data'
@@ -154,7 +132,7 @@ li {
   margin: 5px 0;
 }
 .news-list img {
-  width: 30%;
+  width: 100px;
   margin-right: 5px;
 }
 /* 图片懒加载样式 */

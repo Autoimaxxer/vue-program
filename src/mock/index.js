@@ -22,7 +22,42 @@ configArray.forEach((item) => {
     Mock.mock(new RegExp('^' + protocol[1]), protocol[0], target)
   }
 })
-
+const newslist = function () { // 模拟新闻列表
+  let demoList = Mock.mock({
+    'list|10': [
+      {
+        img: '@dataImage(100x200,新闻列表)',
+        title: '@cword(10,20)',
+        time: '@datetime()'
+      }
+    ]
+  })
+  return {
+    status: 200,
+    message: 'success',
+    data: demoList
+  }
+}
+const photolist = function (title) { // 模拟图文列表
+  let demoList = Mock.mock({
+    'list|10': [
+      {
+        img: '@dataImage(100x100,' + title + ')',
+        title: '@cword(15,25)',
+        source: '@cword(4)',
+        time: '@datetime()'
+      }
+    ]
+  })
+  if (title === '推荐' || title === '娱乐') {
+    demoList = { list: [] }
+  }
+  return {
+    status: 200,
+    message: 'success',
+    data: demoList
+  }
+}
 const demo1 = function () { // 模拟图文详情数据
   let demoList = {
     click: parseInt(Math.random() * 10 + 20),
@@ -36,11 +71,13 @@ const demo1 = function () { // 模拟图文详情数据
     data: demoList
   }
 }
-const demo2 = function () { // 模拟一组图片
+const demo2 = function (title, id) { // 模拟一组图片
+  console.log(title)
+  console.log(id)
   let _data = Mock.mock({
     'list|6': [
       {
-        img: '@dataImage(200x100)'
+        img: '@dataImage(200x100,' + title + id + ')'
       }
     ]
   })
@@ -160,8 +197,14 @@ const demo8 = function (count) { // 模拟购物车数据
     data: demoList
   }
 }
+Mock.mock(/\/newslist/, 'get', newslist)
+Mock.mock(/\/photolist/, 'get', res => {
+  return photolist(res.url.split('?title=')[1])
+})
 Mock.mock('/mocktest/photodetail', 'get', demo1)
-Mock.mock('/mocktest/photodetailimg', 'get', demo2)
+Mock.mock(/\/photodetailimg/, 'get', res => {
+  return demo2(decodeURIComponent(JSON.parse(res.body).title), JSON.parse(res.body).id)
+})
 Mock.mock(/\/getcomment/, 'get', res => {
   return demo3(res.url.split('?pageindex=')[1])
 })

@@ -44,7 +44,7 @@ export default {
     loadFirst () {
       this.$axios.get(`/mocktest/getcomment/${this.cid}?pageindex=${this.page}`)
         .then(res => {
-          console.log(res.data.data.list)
+          // console.log(res.data.data.list)
           if (res.data.data.list.length === 0) {
             this.$toast('暂无数据')
             this.text = '暂无数据'

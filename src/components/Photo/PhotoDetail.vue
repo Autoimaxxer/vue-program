@@ -21,7 +21,7 @@
     <iframe :src="newsDtail.url" frameborder="0"></iframe>-->
 
     <!-- 使用评论组件 -->
-    <comment :cid='$route.query.id'></comment>
+    <comment :cid="$route.query.id"></comment>
   </div>
 </template>
 <script>
@@ -72,11 +72,14 @@ export default {
     }
   },
   created () {
-    let _this = this
-    let rId = _this.$route.query.r_id
-    let _id = _this.$route.query.id
+    let title = encodeURIComponent(this.$route.query.title)
+    let id = this.$route.query.id
     this.testMock(0)
-    this.$axios.get('/mocktest/photodetailimg').then(res => {
+    this.$axios.get('/mocktest/photodetailimg', {
+      data: {
+        title, id
+      }
+    }).then(res => {
       console.log(res)
       this.mockImg = res.data.data.list
       this.mockImg.forEach(
@@ -88,27 +91,6 @@ export default {
           img.h = 200
         }
       )
-    }).catch(res => {
-
-    })
-
-    this.$axios.get('/txopenjk/irs/rcd', {
-      params: {
-        cid: 56,
-        ext: _this.list[rId].ext,
-        token: 'c786875b8e04da17b24ea5e332745e0f',
-        num: 20,
-        expIds: '20190106A13PFT%7C20190108A04MLS',
-        page: 0
-      }
-    }).then(res => {
-      // console.log(res)
-      let _data = res.data.data
-      for (let i = 0; i < _data.length; i++) {
-        if (_data[i].id === _id) {
-          _this.newsDtail = _data[i]
-        }
-      }
     }).catch(res => {
 
     })

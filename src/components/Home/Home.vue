@@ -1,7 +1,6 @@
 <template>
   <div>
     <!-- 上有轮播图，下有九宫格 -->
-    <!-- <my-swiper url="/apiopenjk/getImages?page=0&count=5"></my-swiper> -->
     <my-swiper url="/mocktest/goodsImgList"></my-swiper>
     <div class="grid">
       <my-ul>
@@ -67,28 +66,7 @@ export default {
         }
       ]
     }
-  },
-  // created创建组件的生命周期函数中，可以操作数据
-  created () {
-    // this.$axios.get('/doubanjk/v2/movie/top250?start=0&count=5&apikey=0df993c66c0c636e29ecbb5344252a4a')
-    //   .then(res => {
-    //     // res.data.message=[{img:'图片地址'}]
-    //     this.imgs = res.data.subjects
-    //     console.log(res.data.subjects)
-    //   })
-    //   .catch(err => {
-    //     console.log('轮播图获取异常', err)
-    //   })
-    // this.$axios.post('/ytzqtydjk/middleware/api/login/getTestInfo.json', { yddh: '13699850234' })
-    //   .then(res => {
-    //     console.log(res.data.results[0])
-    //     window.localStorage.setItem('tydInfo', JSON.stringify(res.data.results[0]))
-    //   })
-    //   .catch(err => {
-    //     console.log('获取泰易达登录信息异常', err)
-    //   })
   }
-
 }
 </script>
 <style scoped>
