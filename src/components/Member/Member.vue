@@ -1,5 +1,7 @@
 <template>
-  <div>我是会员</div>
+  <div>
+    <h1>VIP</h1>
+  </div>
 </template>
 <script>
 export default {
@@ -10,3 +12,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.temp1 {
+  padding-top: 40px;
+}
+</style>

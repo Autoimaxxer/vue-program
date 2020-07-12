@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home/Home'
-import Member from '@/components/Member/Member'
-import Search from '@/components/Search/Search'
-import Shopcart from '@/components/Shopcart/Shopcart'
-import NewsList from '@/components/News/NewsList'
-import NewsDetail from '@/components/News/NewsDetail'
-import PhotoList from '@/components/Photo/PhotoList'
-import PhotoDetail from '@/components/Photo/PhotoDetail'
-import GoodsList from '@/components/Goods/GoodsList'
-import GoodsDetail from '@/components/Goods/GoodsDetail'
-import GoodsComment from '@/components/Goods/GoodsComment'
+const Home = () => import('@/components/Home/Home')
+const Member = () => import('@/components/Member/Member')
+const Search = () => import('@/components/Search/Search')
+const Shopcart = () => import('@/components/Shopcart/Shopcart')
+const NewsList = () => import('@/components/News/NewsList')
+const NewsDetail = () => import('@/components/News/NewsDetail')
+const PhotoList = () => import('@/components/Photo/PhotoList')
+const PhotoDetail = () => import('@/components/Photo/PhotoDetail')
+const GoodsList = () => import('@/components/Goods/GoodsList')
+const GoodsDetail = () => import('@/components/Goods/GoodsDetail')
+const GoodsComment = () => import('@/components/Goods/GoodsComment')
 
 Vue.use(Router)
 // 注册全局组件router-view和router-link
