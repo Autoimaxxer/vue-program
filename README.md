@@ -1,6 +1,6 @@
 # 一个基础的vue-demo
 > 项目比较简单，单纯作为个人的练手项目，用以把所学的串联起来
-> 项目预览地址：(https://autoimaxxer.github.io/vue-program/dist)
+>
 
 > <a href="https://autoimaxxer.github.io/vue-program/dist" target="_blank">项目预览地址</a>
 
